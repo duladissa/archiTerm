@@ -4,6 +4,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/architerm/architerm/internal/theme"
 	"github.com/atotto/clipboard"
 	"github.com/charmbracelet/lipgloss"
 )
@@ -322,12 +323,17 @@ func (p *OutputPanel) SetHeight(height int) {
 	p.Height = height
 }
 
+// SetStyles updates the styles for the output panel
+func (p *OutputPanel) SetStyles(styles *Styles) {
+	p.styles = styles
+}
+
 // View renders the output panel
 func (p *OutputPanel) View() string {
 	// Title with entry count and copy hints
 	titleParts := []string{"📺 Output"}
 	if len(p.Entries) > 0 {
-		titleParts = append(titleParts, lipgloss.NewStyle().Foreground(ColorMuted).Render(
+		titleParts = append(titleParts, lipgloss.NewStyle().Foreground(theme.CurrentTheme.GetMuted()).Render(
 			" │ Ctrl+Y: copy output │ Ctrl+B: copy cmd"))
 	}
 	if p.CopyMessage != "" {
@@ -376,7 +382,7 @@ func (p *OutputPanel) View() string {
 
 		// Show scroll and copy info if content exceeds view
 		if len(p.Lines) > visibleCount {
-			scrollInfo := lipgloss.NewStyle().Foreground(ColorMuted).Render(
+			scrollInfo := lipgloss.NewStyle().Foreground(theme.CurrentTheme.GetMuted()).Render(
 				" [↑/↓ scroll] [Ctrl+Y copy output] [Ctrl+B copy cmd]",
 			)
 			lines = append(lines, scrollInfo)
@@ -442,7 +448,7 @@ func (p *OutputPanel) styleLine(line string) string {
 	// Warning lines
 	if strings.HasPrefix(strings.ToLower(line), "warning") ||
 		strings.HasPrefix(strings.ToLower(line), "warn") {
-		return lipgloss.NewStyle().Foreground(ColorWarning).Render(line)
+		return lipgloss.NewStyle().Foreground(theme.CurrentTheme.GetWarning()).Render(line)
 	}
 
 	// Default output text

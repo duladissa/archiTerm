@@ -24,6 +24,11 @@ func NewLayout(styles *Styles) *Layout {
 	}
 }
 
+// SetStyles updates the styles for the layout
+func (l *Layout) SetStyles(styles *Styles) {
+	l.styles = styles
+}
+
 // SetSize sets the terminal size
 func (l *Layout) SetSize(width, height int) {
 	l.Width = width
@@ -105,6 +110,7 @@ func (l *Layout) RenderStatusBar(status string) string {
 		l.styles.StatusKeyHint.Render("Enter") + " run",
 		l.styles.StatusKeyHint.Render("Ctrl+Y") + " copy out",
 		l.styles.StatusKeyHint.Render("Ctrl+B") + " copy cmd",
+		l.styles.StatusKeyHint.Render("Ctrl+T") + " theme",
 		l.styles.StatusKeyHint.Render("Ctrl+L") + " clear",
 		l.styles.StatusKeyHint.Render("Ctrl+C") + " exit",
 	}

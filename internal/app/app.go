@@ -7,6 +7,7 @@ import (
 	"github.com/architerm/architerm/internal/commands"
 	"github.com/architerm/architerm/internal/executor"
 	"github.com/architerm/architerm/internal/history"
+	"github.com/architerm/architerm/internal/theme"
 	"github.com/architerm/architerm/internal/ui"
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -298,6 +299,11 @@ func (m *Model) handleKeyPress(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		m.outputPanel.CopyLastCommand()
 		return m, nil
 
+	case tea.KeyCtrlT:
+		// Cycle through themes
+		m.cycleTheme()
+		return m, nil
+
 	case tea.KeyRunes:
 		// Filter out mouse escape sequence characters that might leak through
 		// Mouse sequences typically have multiple characters with digits and special chars
@@ -393,6 +399,23 @@ func (m *Model) updateLayout() {
 	rightWidth := m.layout.GetRightPanelWidth()
 	m.outputPanel.SetWidth(rightWidth)
 	m.outputPanel.SetHeight(m.layout.GetOutputHeight())
+}
+
+// refreshStyles recreates all styles with the current theme
+func (m *Model) refreshStyles() {
+	m.styles = ui.DefaultStyles()
+	m.layout.SetStyles(m.styles)
+	m.inputPanel.SetStyles(m.styles)
+	m.suggestions.SetStyles(m.styles)
+	m.categories.SetStyles(m.styles)
+	m.outputPanel.SetStyles(m.styles)
+}
+
+// cycleTheme switches to the next available theme
+func (m *Model) cycleTheme() {
+	newTheme := theme.CycleTheme()
+	m.refreshStyles()
+	m.status = fmt.Sprintf("Theme: %s", newTheme)
 }
 
 // View implements tea.Model

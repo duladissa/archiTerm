@@ -109,6 +109,11 @@ func (p *InputPanel) SetWidth(width int) {
 	p.Width = width
 }
 
+// SetStyles updates the styles for the input panel
+func (p *InputPanel) SetStyles(styles *Styles) {
+	p.styles = styles
+}
+
 // View renders the input panel
 func (p *InputPanel) View() string {
 	// Build input line with cursor

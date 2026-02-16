@@ -1,32 +1,23 @@
 package ui
 
 import (
+	"github.com/architerm/architerm/internal/theme"
 	"github.com/charmbracelet/lipgloss"
 )
 
-// Colors - Modern terminal color palette with Unix/Linux style
-var (
-	ColorPrimary    = lipgloss.Color("#7C3AED") // Purple
-	ColorSecondary  = lipgloss.Color("#06B6D4") // Cyan
-	ColorAccent     = lipgloss.Color("#10B981") // Green
-	ColorWarning    = lipgloss.Color("#F59E0B") // Amber
-	ColorError      = lipgloss.Color("#EF4444") // Red
-	ColorMuted      = lipgloss.Color("#6B7280") // Gray
-	ColorText       = lipgloss.Color("#F9FAFB") // White
-	ColorDim        = lipgloss.Color("#4B5563") // Dim gray
-	ColorBackground = lipgloss.Color("#1F2937") // Dark background
-	ColorBorder     = lipgloss.Color("#374151") // Border gray
-	ColorHighlight  = lipgloss.Color("#3B82F6") // Blue highlight
-
-	// Unix/Linux terminal colors
-	ColorPrompt     = lipgloss.Color("#22C55E") // Bright green (like PS1 prompt)
-	ColorCommand    = lipgloss.Color("#FBBF24") // Yellow/gold (command text)
-	ColorSeparator  = lipgloss.Color("#8B5CF6") // Purple (separator lines)
-	ColorExitOK     = lipgloss.Color("#22C55E") // Green (success)
-	ColorExitFail   = lipgloss.Color("#EF4444") // Red (failure)
-	ColorDuration   = lipgloss.Color("#60A5FA") // Light blue (timing info)
-	ColorOutput     = lipgloss.Color("#E5E7EB") // Light gray (command output)
-)
+// GetColors returns colors from the current theme
+func GetColors() (
+	primary, secondary, accent, warning, errorColor, muted,
+	text, dim, background, border, highlight,
+	prompt, command, separator, exitOK, exitFail, duration, output lipgloss.Color,
+) {
+	t := theme.CurrentTheme
+	return t.GetPrimary(), t.GetSecondary(), t.GetAccent(), t.GetWarning(),
+		t.GetError(), t.GetMuted(), t.GetForeground(), t.GetMuted(),
+		t.GetBackground(), t.GetBorder(), t.GetSuggestionMatch(),
+		t.GetPrompt(), t.GetCommand(), t.GetSeparator(), t.GetSuccess(),
+		t.GetError(), t.GetSecondary(), t.GetOutput()
+}
 
 // Styles holds all the application styles
 type Styles struct {
@@ -77,140 +68,64 @@ type Styles struct {
 	Border lipgloss.Style
 }
 
-// DefaultStyles returns the default application styles
+// DefaultStyles returns the default application styles using the current theme
 func DefaultStyles() *Styles {
+	t := theme.CurrentTheme
 	s := &Styles{}
 
 	// Base border style
 	baseBorder := lipgloss.NewStyle().
 		BorderStyle(lipgloss.RoundedBorder()).
-		BorderForeground(ColorBorder)
+		BorderForeground(t.GetBorder())
 
 	// App container
-	s.App = lipgloss.NewStyle().
-		Padding(0)
+	s.App = lipgloss.NewStyle().Padding(0)
 
 	// Header
 	s.Header = lipgloss.NewStyle().
-		Foreground(ColorText).
-		Background(ColorPrimary).
+		Foreground(t.GetForeground()).
+		Background(t.GetPrimary()).
 		Bold(true).
 		Padding(0, 2).
 		MarginBottom(0)
 
-	s.HeaderTitle = lipgloss.NewStyle().
-		Foreground(ColorText).
-		Bold(true)
-
-	s.HeaderHelp = lipgloss.NewStyle().
-		Foreground(ColorMuted).
-		Italic(true)
+	s.HeaderTitle = lipgloss.NewStyle().Foreground(t.GetForeground()).Bold(true)
+	s.HeaderHelp = lipgloss.NewStyle().Foreground(t.GetMuted()).Italic(true)
 
 	// Input panel
-	s.InputPanel = baseBorder.Copy().
-		BorderForeground(ColorPrimary).
-		Padding(0, 1)
-
-	s.InputPanelTitle = lipgloss.NewStyle().
-		Foreground(ColorPrimary).
-		Bold(true)
-
-	s.InputPrompt = lipgloss.NewStyle().
-		Foreground(ColorAccent).
-		Bold(true)
-
-	s.InputText = lipgloss.NewStyle().
-		Foreground(ColorText)
-
-	s.InputGhost = lipgloss.NewStyle().
-		Foreground(ColorDim).
-		Italic(true)
-
-	s.InputCursor = lipgloss.NewStyle().
-		Foreground(ColorText).
-		Background(ColorHighlight)
+	s.InputPanel = baseBorder.Copy().BorderForeground(t.GetPrimary()).Padding(0, 1)
+	s.InputPanelTitle = lipgloss.NewStyle().Foreground(t.GetPrimary()).Bold(true)
+	s.InputPrompt = lipgloss.NewStyle().Foreground(t.GetAccent()).Bold(true)
+	s.InputText = lipgloss.NewStyle().Foreground(t.GetForeground())
+	s.InputGhost = lipgloss.NewStyle().Foreground(t.GetMuted()).Italic(true)
+	s.InputCursor = lipgloss.NewStyle().Foreground(t.GetForeground()).Background(t.GetSuggestionMatch())
 
 	// Suggestions panel
-	s.SuggestionsPanel = baseBorder.Copy().
-		BorderForeground(ColorSecondary).
-		Padding(0, 1)
-
-	s.SuggestionsPanelTitle = lipgloss.NewStyle().
-		Foreground(ColorSecondary).
-		Bold(true)
-
-	s.SuggestionItem = lipgloss.NewStyle().
-		Foreground(ColorText).
-		Padding(0, 1)
-
-	s.SuggestionSelected = lipgloss.NewStyle().
-		Foreground(ColorText).
-		Background(ColorHighlight).
-		Bold(true).
-		Padding(0, 1)
-
-	s.SuggestionCommand = lipgloss.NewStyle().
-		Foreground(ColorText)
-
-	s.SuggestionDesc = lipgloss.NewStyle().
-		Foreground(ColorMuted).
-		Italic(true)
-
-	s.SuggestionCategory = lipgloss.NewStyle().
-		Foreground(ColorSecondary).
-		Bold(true)
+	s.SuggestionsPanel = baseBorder.Copy().BorderForeground(t.GetSecondary()).Padding(0, 1)
+	s.SuggestionsPanelTitle = lipgloss.NewStyle().Foreground(t.GetSecondary()).Bold(true)
+	s.SuggestionItem = lipgloss.NewStyle().Foreground(t.GetForeground()).Padding(0, 1)
+	s.SuggestionSelected = lipgloss.NewStyle().Foreground(t.GetForeground()).Background(t.GetSuggestionMatch()).Bold(true).Padding(0, 1)
+	s.SuggestionCommand = lipgloss.NewStyle().Foreground(t.GetForeground())
+	s.SuggestionDesc = lipgloss.NewStyle().Foreground(t.GetMuted()).Italic(true)
+	s.SuggestionCategory = lipgloss.NewStyle().Foreground(t.GetSecondary()).Bold(true)
 
 	// Output panel
-	s.OutputPanel = baseBorder.Copy().
-		BorderForeground(ColorAccent).
-		Padding(0, 1)
-
-	s.OutputPanelTitle = lipgloss.NewStyle().
-		Foreground(ColorAccent).
-		Bold(true)
-
-	s.OutputText = lipgloss.NewStyle().
-		Foreground(ColorOutput)
-
-	s.OutputError = lipgloss.NewStyle().
-		Foreground(ColorError)
-
-	s.OutputSuccess = lipgloss.NewStyle().
-		Foreground(ColorAccent)
-
-	s.OutputPrompt = lipgloss.NewStyle().
-		Foreground(ColorPrompt).
-		Bold(true)
-
-	s.OutputCommand = lipgloss.NewStyle().
-		Foreground(ColorCommand).
-		Bold(true)
-
-	s.OutputSeparator = lipgloss.NewStyle().
-		Foreground(ColorSeparator)
-
-	s.OutputDuration = lipgloss.NewStyle().
-		Foreground(ColorDuration)
-
-	s.OutputExitOK = lipgloss.NewStyle().
-		Foreground(ColorExitOK).
-		Bold(true)
-
-	s.OutputExitFail = lipgloss.NewStyle().
-		Foreground(ColorExitFail).
-		Bold(true)
+	s.OutputPanel = baseBorder.Copy().BorderForeground(t.GetAccent()).Padding(0, 1)
+	s.OutputPanelTitle = lipgloss.NewStyle().Foreground(t.GetAccent()).Bold(true)
+	s.OutputText = lipgloss.NewStyle().Foreground(t.GetOutput())
+	s.OutputError = lipgloss.NewStyle().Foreground(t.GetError())
+	s.OutputSuccess = lipgloss.NewStyle().Foreground(t.GetAccent())
+	s.OutputPrompt = lipgloss.NewStyle().Foreground(t.GetPrompt()).Bold(true)
+	s.OutputCommand = lipgloss.NewStyle().Foreground(t.GetCommand()).Bold(true)
+	s.OutputSeparator = lipgloss.NewStyle().Foreground(t.GetSeparator())
+	s.OutputDuration = lipgloss.NewStyle().Foreground(t.GetSecondary())
+	s.OutputExitOK = lipgloss.NewStyle().Foreground(t.GetSuccess()).Bold(true)
+	s.OutputExitFail = lipgloss.NewStyle().Foreground(t.GetError()).Bold(true)
 
 	// Status bar
-	s.StatusBar = lipgloss.NewStyle().
-		Foreground(ColorMuted).
-		Padding(0, 1)
-
-	s.StatusText = lipgloss.NewStyle().
-		Foreground(ColorMuted)
-
-	s.StatusKeyHint = lipgloss.NewStyle().
-		Foreground(ColorSecondary).
-		Bold(true)
+	s.StatusBar = lipgloss.NewStyle().Foreground(t.GetMuted()).Padding(0, 1)
+	s.StatusText = lipgloss.NewStyle().Foreground(t.GetMuted())
+	s.StatusKeyHint = lipgloss.NewStyle().Foreground(t.GetSecondary()).Bold(true)
 
 	return s
 }

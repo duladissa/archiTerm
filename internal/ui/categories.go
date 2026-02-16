@@ -37,6 +37,11 @@ func (p *CategoriesPanel) SetHeight(height int) {
 	p.Height = height
 }
 
+// SetStyles updates the styles for the categories panel
+func (p *CategoriesPanel) SetStyles(styles *Styles) {
+	p.styles = styles
+}
+
 // View renders the categories panel
 func (p *CategoriesPanel) View() string {
 	titleText := p.styles.SuggestionsPanelTitle.Render("🛠 Supported Technologies")

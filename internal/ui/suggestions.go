@@ -82,6 +82,11 @@ func (p *SuggestionsPanel) SetHeight(height int) {
 	}
 }
 
+// SetStyles updates the styles for the suggestions panel
+func (p *SuggestionsPanel) SetStyles(styles *Styles) {
+	p.styles = styles
+}
+
 // View renders the suggestions panel
 func (p *SuggestionsPanel) View() string {
 	// Title with count
