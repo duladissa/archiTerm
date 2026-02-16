@@ -1,0 +1,80 @@
+{
+  "category": "nginx",
+  "commands": [
+    {
+      "template": "nginx -t",
+      "description": "Test nginx configuration",
+      "tags": ["test", "config", "validate"]
+    },
+    {
+      "template": "nginx -s reload",
+      "description": "Reload nginx configuration",
+      "tags": ["reload", "config"]
+    },
+    {
+      "template": "nginx -s stop",
+      "description": "Stop nginx immediately",
+      "tags": ["stop", "shutdown"]
+    },
+    {
+      "template": "nginx -s quit",
+      "description": "Graceful shutdown of nginx",
+      "tags": ["quit", "graceful", "shutdown"]
+    },
+    {
+      "template": "nginx -V",
+      "description": "Show nginx version and compile options",
+      "tags": ["version", "info"]
+    },
+    {
+      "template": "systemctl status nginx",
+      "description": "Check nginx service status",
+      "tags": ["status", "service", "systemctl"]
+    },
+    {
+      "template": "systemctl restart nginx",
+      "description": "Restart nginx service",
+      "tags": ["restart", "service", "systemctl"]
+    },
+    {
+      "template": "tail -f /var/log/nginx/access.log",
+      "description": "Follow nginx access logs",
+      "tags": ["logs", "access", "tail"]
+    },
+    {
+      "template": "tail -f /var/log/nginx/error.log",
+      "description": "Follow nginx error logs",
+      "tags": ["logs", "error", "tail"]
+    },
+    {
+      "template": "cat /etc/nginx/nginx.conf",
+      "description": "View main nginx configuration",
+      "tags": ["config", "view", "main"]
+    },
+    {
+      "template": "ls -la /etc/nginx/sites-enabled/",
+      "description": "List enabled sites",
+      "tags": ["sites", "enabled", "list"]
+    },
+    {
+      "template": "ls -la /etc/nginx/sites-available/",
+      "description": "List available sites",
+      "tags": ["sites", "available", "list"]
+    },
+    {
+      "template": "ln -s /etc/nginx/sites-available/SITE /etc/nginx/sites-enabled/",
+      "description": "Enable a site",
+      "tags": ["enable", "site", "symlink"]
+    },
+    {
+      "template": "rm /etc/nginx/sites-enabled/SITE",
+      "description": "Disable a site",
+      "tags": ["disable", "site", "remove"]
+    },
+    {
+      "template": "nginx -T",
+      "description": "Test and dump full configuration",
+      "tags": ["test", "dump", "config"]
+    }
+  ]
+}

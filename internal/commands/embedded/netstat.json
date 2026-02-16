@@ -1,0 +1,80 @@
+{
+  "category": "netstat",
+  "commands": [
+    {
+      "template": "netstat -tuln",
+      "description": "List all listening TCP/UDP ports",
+      "tags": ["ports", "listening", "tcp", "udp"]
+    },
+    {
+      "template": "netstat -tulnp",
+      "description": "List listening ports with process names",
+      "tags": ["ports", "process", "pid"]
+    },
+    {
+      "template": "netstat -an",
+      "description": "Show all connections (numeric)",
+      "tags": ["connections", "all"]
+    },
+    {
+      "template": "netstat -rn",
+      "description": "Show routing table",
+      "tags": ["routing", "routes"]
+    },
+    {
+      "template": "netstat -i",
+      "description": "Show network interfaces",
+      "tags": ["interfaces", "stats"]
+    },
+    {
+      "template": "netstat -s",
+      "description": "Show network statistics by protocol",
+      "tags": ["statistics", "protocol"]
+    },
+    {
+      "template": "netstat -c",
+      "description": "Continuous output (refresh every second)",
+      "tags": ["continuous", "monitor"]
+    },
+    {
+      "template": "netstat -tulnp | grep PORT",
+      "description": "Find process using specific port",
+      "tags": ["find", "port", "process"]
+    },
+    {
+      "template": "netstat -anp | grep ESTABLISHED",
+      "description": "Show established connections",
+      "tags": ["established", "active"]
+    },
+    {
+      "template": "netstat -anp | grep LISTEN",
+      "description": "Show all listening services",
+      "tags": ["listening", "services"]
+    },
+    {
+      "template": "ss -tuln",
+      "description": "List listening ports (modern alternative)",
+      "tags": ["ss", "ports", "listening"]
+    },
+    {
+      "template": "ss -tulnp",
+      "description": "List listening ports with processes (ss)",
+      "tags": ["ss", "process"]
+    },
+    {
+      "template": "ss -s",
+      "description": "Show socket statistics summary",
+      "tags": ["ss", "statistics", "summary"]
+    },
+    {
+      "template": "lsof -i :PORT",
+      "description": "Find process using specific port",
+      "tags": ["lsof", "port", "process"]
+    },
+    {
+      "template": "lsof -i -P -n",
+      "description": "List all network connections",
+      "tags": ["lsof", "connections", "network"]
+    }
+  ]
+}

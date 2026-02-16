@@ -1,0 +1,80 @@
+{
+  "category": "tmux",
+  "commands": [
+    {
+      "template": "tmux new -s SESSION_NAME",
+      "description": "Create new named session",
+      "tags": ["new", "session", "create"]
+    },
+    {
+      "template": "tmux attach -t SESSION_NAME",
+      "description": "Attach to existing session",
+      "tags": ["attach", "session"]
+    },
+    {
+      "template": "tmux detach",
+      "description": "Detach from current session",
+      "tags": ["detach", "session"]
+    },
+    {
+      "template": "tmux ls",
+      "description": "List all sessions",
+      "tags": ["list", "sessions"]
+    },
+    {
+      "template": "tmux kill-session -t SESSION_NAME",
+      "description": "Kill a session",
+      "tags": ["kill", "session", "close"]
+    },
+    {
+      "template": "tmux kill-server",
+      "description": "Kill tmux server and all sessions",
+      "tags": ["kill", "server", "all"]
+    },
+    {
+      "template": "tmux new-window",
+      "description": "Create new window in session",
+      "tags": ["new", "window"]
+    },
+    {
+      "template": "tmux split-window -h",
+      "description": "Split window horizontally",
+      "tags": ["split", "horizontal", "pane"]
+    },
+    {
+      "template": "tmux split-window -v",
+      "description": "Split window vertically",
+      "tags": ["split", "vertical", "pane"]
+    },
+    {
+      "template": "tmux select-pane -L",
+      "description": "Move to left pane",
+      "tags": ["select", "pane", "left"]
+    },
+    {
+      "template": "tmux select-pane -R",
+      "description": "Move to right pane",
+      "tags": ["select", "pane", "right"]
+    },
+    {
+      "template": "tmux select-pane -U",
+      "description": "Move to pane above",
+      "tags": ["select", "pane", "up"]
+    },
+    {
+      "template": "tmux select-pane -D",
+      "description": "Move to pane below",
+      "tags": ["select", "pane", "down"]
+    },
+    {
+      "template": "tmux resize-pane -D 10",
+      "description": "Resize pane down by 10 lines",
+      "tags": ["resize", "pane"]
+    },
+    {
+      "template": "tmux source-file ~/.tmux.conf",
+      "description": "Reload tmux configuration",
+      "tags": ["reload", "config"]
+    }
+  ]
+}

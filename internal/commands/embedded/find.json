@@ -1,0 +1,80 @@
+{
+  "category": "find",
+  "commands": [
+    {
+      "template": "find DIRECTORY -name 'FILENAME'",
+      "description": "Find files by name",
+      "tags": ["name", "search", "basic"]
+    },
+    {
+      "template": "find DIRECTORY -iname 'FILENAME'",
+      "description": "Find files by name (case-insensitive)",
+      "tags": ["name", "case", "insensitive"]
+    },
+    {
+      "template": "find DIRECTORY -type f",
+      "description": "Find only files",
+      "tags": ["type", "files"]
+    },
+    {
+      "template": "find DIRECTORY -type d",
+      "description": "Find only directories",
+      "tags": ["type", "directories"]
+    },
+    {
+      "template": "find DIRECTORY -name '*.EXT'",
+      "description": "Find files by extension",
+      "tags": ["extension", "wildcard"]
+    },
+    {
+      "template": "find DIRECTORY -size +SIZE",
+      "description": "Find files larger than size (e.g., +100M)",
+      "tags": ["size", "large", "filter"]
+    },
+    {
+      "template": "find DIRECTORY -size -SIZE",
+      "description": "Find files smaller than size",
+      "tags": ["size", "small", "filter"]
+    },
+    {
+      "template": "find DIRECTORY -mtime -DAYS",
+      "description": "Find files modified in last N days",
+      "tags": ["modified", "time", "recent"]
+    },
+    {
+      "template": "find DIRECTORY -mtime +DAYS",
+      "description": "Find files modified more than N days ago",
+      "tags": ["modified", "time", "old"]
+    },
+    {
+      "template": "find DIRECTORY -empty",
+      "description": "Find empty files and directories",
+      "tags": ["empty", "cleanup"]
+    },
+    {
+      "template": "find DIRECTORY -name 'PATTERN' -delete",
+      "description": "Find and delete files",
+      "tags": ["delete", "remove", "cleanup"]
+    },
+    {
+      "template": "find DIRECTORY -name 'PATTERN' -exec CMD {} \\;",
+      "description": "Find and execute command on each file",
+      "tags": ["exec", "command", "each"]
+    },
+    {
+      "template": "find DIRECTORY -name 'PATTERN' -exec CMD {} +",
+      "description": "Find and execute command on all files",
+      "tags": ["exec", "command", "batch"]
+    },
+    {
+      "template": "find DIRECTORY -perm 777",
+      "description": "Find files with specific permissions",
+      "tags": ["permissions", "perm", "security"]
+    },
+    {
+      "template": "find DIRECTORY -user USERNAME",
+      "description": "Find files owned by user",
+      "tags": ["user", "owner"]
+    }
+  ]
+}

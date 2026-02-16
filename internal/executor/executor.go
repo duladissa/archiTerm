@@ -11,13 +11,28 @@ import (
 	"time"
 )
 
+// openBrowser opens a URL in the default browser
+func openBrowser(url string) error {
+	var cmd *exec.Cmd
+	switch runtime.GOOS {
+	case "windows":
+		cmd = exec.Command("rundll32", "url.dll,FileProtocolHandler", url)
+	case "darwin":
+		cmd = exec.Command("open", url)
+	default: // linux, freebsd, etc.
+		cmd = exec.Command("xdg-open", url)
+	}
+	return cmd.Start()
+}
+
 // Result represents the result of a command execution
 type Result struct {
-	Command  string
-	Output   string
-	Error    string
-	ExitCode int
-	Duration time.Duration
+	Command    string
+	Output     string
+	Error      string
+	ExitCode   int
+	Duration   time.Duration
+	InstallURL string // URL for installing missing command (used for "command not found")
 }
 
 // Executor handles command execution
@@ -122,50 +137,149 @@ func (e *Executor) IsRunning() bool {
 type CommandNotFoundInfo struct {
 	Command     string
 	InstallHint string
+	InstallURL  string
 }
 
 // knownCommands maps commands to their installation hints
 var knownCommands = map[string]CommandNotFoundInfo{
 	"gcloud": {
 		Command:     "gcloud",
-		InstallHint: "Install Google Cloud SDK: https://cloud.google.com/sdk/docs/install",
+		InstallHint: "Install Google Cloud SDK",
+		InstallURL:  "https://cloud.google.com/sdk/docs/install",
 	},
 	"kubectl": {
 		Command:     "kubectl",
-		InstallHint: "Install kubectl: https://kubernetes.io/docs/tasks/tools/",
+		InstallHint: "Install kubectl",
+		InstallURL:  "https://kubernetes.io/docs/tasks/tools/",
 	},
 	"docker": {
 		Command:     "docker",
-		InstallHint: "Install Docker: https://docs.docker.com/get-docker/",
+		InstallHint: "Install Docker",
+		InstallURL:  "https://docs.docker.com/get-docker/",
 	},
 	"docker-compose": {
 		Command:     "docker-compose",
-		InstallHint: "Install Docker Compose: https://docs.docker.com/compose/install/",
+		InstallHint: "Install Docker Compose",
+		InstallURL:  "https://docs.docker.com/compose/install/",
 	},
 	"az": {
 		Command:     "az",
-		InstallHint: "Install Azure CLI: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli",
+		InstallHint: "Install Azure CLI",
+		InstallURL:  "https://docs.microsoft.com/en-us/cli/azure/install-azure-cli",
 	},
 	"git": {
 		Command:     "git",
-		InstallHint: "Install Git: https://git-scm.com/downloads",
+		InstallHint: "Install Git",
+		InstallURL:  "https://git-scm.com/downloads",
 	},
 	"curl": {
 		Command:     "curl",
 		InstallHint: "Install curl: apt install curl (Linux) | brew install curl (macOS)",
+		InstallURL:  "",
 	},
 	"terraform": {
 		Command:     "terraform",
-		InstallHint: "Install Terraform: https://www.terraform.io/downloads",
+		InstallHint: "Install Terraform",
+		InstallURL:  "https://www.terraform.io/downloads",
 	},
 	"helm": {
 		Command:     "helm",
-		InstallHint: "Install Helm: https://helm.sh/docs/intro/install/",
+		InstallHint: "Install Helm",
+		InstallURL:  "https://helm.sh/docs/intro/install/",
 	},
 	"aws": {
 		Command:     "aws",
-		InstallHint: "Install AWS CLI: https://aws.amazon.com/cli/",
+		InstallHint: "Install AWS CLI",
+		InstallURL:  "https://aws.amazon.com/cli/",
 	},
+	"ssh": {
+		Command:     "ssh",
+		InstallHint: "Install OpenSSH: apt install openssh-client (Linux) | brew install openssh (macOS)",
+		InstallURL:  "",
+	},
+	"scp": {
+		Command:     "scp",
+		InstallHint: "Install OpenSSH: apt install openssh-client (Linux) | brew install openssh (macOS)",
+		InstallURL:  "",
+	},
+	"ssh-keygen": {
+		Command:     "ssh-keygen",
+		InstallHint: "Install OpenSSH: apt install openssh-client (Linux) | brew install openssh (macOS)",
+		InstallURL:  "",
+	},
+	"tcpdump": {
+		Command:     "tcpdump",
+		InstallHint: "Install tcpdump: apt install tcpdump (Linux) | brew install tcpdump (macOS)",
+		InstallURL:  "https://www.tcpdump.org/",
+	},
+	"netstat": {
+		Command:     "netstat",
+		InstallHint: "Install net-tools: apt install net-tools (Linux) | brew install net-tools (macOS)",
+		InstallURL:  "",
+	},
+	"ss": {
+		Command:     "ss",
+		InstallHint: "Part of iproute2: apt install iproute2 (Linux)",
+		InstallURL:  "",
+	},
+	"lsof": {
+		Command:     "lsof",
+		InstallHint: "Install lsof: apt install lsof (Linux) | brew install lsof (macOS)",
+		InstallURL:  "",
+	},
+	"systemctl": {
+		Command:     "systemctl",
+		InstallHint: "systemctl is part of systemd (Linux only)",
+		InstallURL:  "",
+	},
+	"journalctl": {
+		Command:     "journalctl",
+		InstallHint: "journalctl is part of systemd (Linux only)",
+		InstallURL:  "",
+	},
+	"iptables": {
+		Command:     "iptables",
+		InstallHint: "Install iptables: apt install iptables (Linux)",
+		InstallURL:  "",
+	},
+	"ufw": {
+		Command:     "ufw",
+		InstallHint: "Install UFW: apt install ufw (Ubuntu/Debian)",
+		InstallURL:  "",
+	},
+	"nginx": {
+		Command:     "nginx",
+		InstallHint: "Install nginx",
+		InstallURL:  "https://nginx.org/en/docs/install.html",
+	},
+	"conda": {
+		Command:     "conda",
+		InstallHint: "Install Miniconda or Anaconda",
+		InstallURL:  "https://docs.conda.io/en/latest/miniconda.html",
+	},
+	"tmux": {
+		Command:     "tmux",
+		InstallHint: "Install tmux: apt install tmux (Linux) | brew install tmux (macOS)",
+		InstallURL:  "https://github.com/tmux/tmux/wiki",
+	},
+	"grep": {
+		Command:     "grep",
+		InstallHint: "grep is usually pre-installed. Install: apt install grep (Linux) | brew install grep (macOS)",
+		InstallURL:  "",
+	},
+	"find": {
+		Command:     "find",
+		InstallHint: "find is usually pre-installed. Install: apt install findutils (Linux)",
+		InstallURL:  "",
+	},
+}
+
+// OpenInstallURL opens the install URL for the last command not found error
+func OpenInstallURL(url string) error {
+	if url == "" {
+		return fmt.Errorf("no install URL available")
+	}
+	return openBrowser(url)
 }
 
 // isCommandNotFound checks if the error indicates a missing command
@@ -220,7 +334,11 @@ func FormatResult(r *Result) string {
 		// Check if we have install hints for this command
 		if info, ok := knownCommands[cmdName]; ok {
 			sb.WriteString("📦 HOW TO INSTALL:\n")
-			sb.WriteString(fmt.Sprintf("   %s\n\n", info.InstallHint))
+			sb.WriteString(fmt.Sprintf("   %s\n", info.InstallHint))
+			if info.InstallURL != "" {
+				sb.WriteString(fmt.Sprintf("   🔗 %s\n", info.InstallURL))
+			}
+			sb.WriteString("\n")
 		} else {
 			sb.WriteString("💡 SUGGESTIONS:\n")
 			sb.WriteString(fmt.Sprintf("   • Check if '%s' is installed: which %s\n", cmdName, cmdName))

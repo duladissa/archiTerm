@@ -132,6 +132,67 @@ After copying, you'll see a confirmation message:
 - ✅ **"Output copied!"** - output successfully copied
 - ✅ **"Command copied!"** - command successfully copied
 
+### Mouse Selection & Copy
+
+You can select and copy text from the output panel using your mouse:
+
+| Action | Result |
+|--------|--------|
+| **Click and drag** | Select specific lines |
+| **Double-click** | Select and copy **entire output** |
+| **Release mouse** | Auto-copy selection to clipboard |
+
+**How it works:**
+1. **Click and drag** in the output panel to select lines
+2. **Selected lines** are highlighted in blue
+3. **Release mouse** to automatically copy the selection to clipboard
+4. **Double-click** anywhere in output to select & copy everything
+5. A "✅ Selection copied!" message confirms the copy
+
+This works just like selecting text in a normal terminal!
+
+### Smart "Command Not Found" Handling
+
+When you run a command that's not installed, archiTerm will:
+1. ⚠️ Detect the missing command
+2. 📦 Show installation instructions with a URL
+3. 🔗 Display the install link you can copy
+
+**Example output when `gcloud` is not installed:**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+$ gcloud compute instances list
+────────────────────────────────────────
+
+⚠️  COMMAND NOT FOUND
+────────────────────────────────────────
+The command 'gcloud' is not installed or not in PATH.
+
+📦 HOW TO INSTALL:
+   Install Google Cloud SDK
+   🔗 https://cloud.google.com/sdk/docs/install
+
+🔍 TROUBLESHOOTING:
+   • Verify installation: which <command>
+   • Check PATH: echo $PATH
+   • Reload shell: source ~/.bashrc (or ~/.zshrc)
+
+✗ [Exit code: 127] [Duration: 5ms]
+```
+
+**Supported commands with install hints:**
+| Command | Install URL |
+|---------|-------------|
+| `docker` | https://docs.docker.com/get-docker/ |
+| `docker-compose` | https://docs.docker.com/compose/install/ |
+| `kubectl` | https://kubernetes.io/docs/tasks/tools/ |
+| `gcloud` | https://cloud.google.com/sdk/docs/install |
+| `az` | https://docs.microsoft.com/cli/azure/install-azure-cli |
+| `aws` | https://aws.amazon.com/cli/ |
+| `terraform` | https://www.terraform.io/downloads |
+| `helm` | https://helm.sh/docs/intro/install/ |
+| `git` | https://git-scm.com/downloads |
+
 ### Mouse Support
 
 | Action | Result |
@@ -182,7 +243,7 @@ commands:
 
 ## 📦 Built-in Commands
 
-archiTerm comes with pre-loaded commands stored as embedded JSON files, making it easy to extend:
+archiTerm comes with **230+ pre-loaded commands** stored as embedded JSON files, making it easy to extend:
 
 | Tool | Icon | Commands | Examples |
 |------|------|----------|----------|
@@ -192,18 +253,36 @@ archiTerm comes with pre-loaded commands stored as embedded JSON files, making i
 | **Azure** | ⚡ | 15 | `az login`, `az vm list`, `az aks get-credentials` |
 | **curl** | 🌐 | 15 | `curl -X POST`, `curl -H "Authorization: Bearer"` |
 | **git** | 📦 | 15 | `git status`, `git pull`, `git checkout -b` |
+| **SSH** | 🔐 | 15 | `ssh USER@HOST`, `ssh -i KEY`, `ssh-keygen`, `scp` |
+| **tcpdump** | 🔬 | 15 | `tcpdump -i any`, `tcpdump port 80`, `tcpdump -w file.pcap` |
+| **netstat** | 📡 | 15 | `netstat -tuln`, `ss -tulnp`, `lsof -i :PORT` |
+| **Linux** | 🐧 | 23 | `systemctl status`, `iptables -L`, `ufw allow`, `journalctl` |
+| **nginx** | 🌿 | 15 | `nginx -t`, `nginx -s reload`, `tail -f access.log` |
+| **conda** | 🐍 | 15 | `conda create -n env`, `conda activate`, `conda install` |
+| **tmux** | 🖥️ | 15 | `tmux new -s`, `tmux attach`, `tmux split-window` |
+| **grep** | 🔍 | 15 | `grep -r PATTERN`, `grep -i`, `grep -n`, `grep -v` |
+| **find** | 📂 | 15 | `find . -name`, `find -type f`, `find -mtime`, `find -exec` |
 
 ### Command Storage
 
 Commands are stored in JSON files under `internal/commands/embedded/`:
 ```
 internal/commands/embedded/
-├── docker.json
-├── kubernetes.json
-├── gcloud.json
-├── azure.json
-├── curl.json
-└── git.json
+├── docker.json      # Docker & docker-compose commands
+├── kubernetes.json  # kubectl commands
+├── gcloud.json      # Google Cloud CLI commands
+├── azure.json       # Azure CLI commands
+├── curl.json        # curl HTTP commands
+├── git.json         # Git version control commands
+├── ssh.json         # SSH, SCP, ssh-keygen commands
+├── tcpdump.json     # Network packet capture commands
+├── netstat.json     # netstat, ss, lsof network commands
+├── linux.json       # systemctl, iptables, ufw, journalctl
+├── nginx.json       # nginx web server commands
+├── conda.json       # Conda environment management
+├── tmux.json        # tmux terminal multiplexer
+├── grep.json        # grep pattern search commands
+└── find.json        # find file search commands
 ```
 
 These files are embedded into the binary at compile time, so no external files are needed at runtime.

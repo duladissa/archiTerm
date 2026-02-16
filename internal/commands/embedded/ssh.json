@@ -1,0 +1,80 @@
+{
+  "category": "ssh",
+  "commands": [
+    {
+      "template": "ssh USER@HOST",
+      "description": "Connect to remote host via SSH",
+      "tags": ["connect", "remote", "login"]
+    },
+    {
+      "template": "ssh -p PORT USER@HOST",
+      "description": "Connect to remote host on specific port",
+      "tags": ["connect", "port", "remote"]
+    },
+    {
+      "template": "ssh -i KEYFILE USER@HOST",
+      "description": "Connect using specific private key file",
+      "tags": ["key", "identity", "pem"]
+    },
+    {
+      "template": "ssh -L LOCAL_PORT:REMOTE_HOST:REMOTE_PORT USER@HOST",
+      "description": "Local port forwarding (tunnel)",
+      "tags": ["tunnel", "forward", "local"]
+    },
+    {
+      "template": "ssh -R REMOTE_PORT:LOCAL_HOST:LOCAL_PORT USER@HOST",
+      "description": "Remote port forwarding (reverse tunnel)",
+      "tags": ["tunnel", "reverse", "remote"]
+    },
+    {
+      "template": "ssh -D PORT USER@HOST",
+      "description": "Dynamic SOCKS proxy tunnel",
+      "tags": ["socks", "proxy", "dynamic"]
+    },
+    {
+      "template": "ssh -J JUMP_HOST USER@TARGET_HOST",
+      "description": "Connect via jump host (bastion)",
+      "tags": ["jump", "bastion", "proxy"]
+    },
+    {
+      "template": "ssh -o StrictHostKeyChecking=no USER@HOST",
+      "description": "Connect without host key verification",
+      "tags": ["nocheck", "insecure", "first"]
+    },
+    {
+      "template": "ssh -v USER@HOST",
+      "description": "Verbose connection for debugging",
+      "tags": ["debug", "verbose", "troubleshoot"]
+    },
+    {
+      "template": "ssh -N -f -L LOCAL_PORT:REMOTE_HOST:REMOTE_PORT USER@HOST",
+      "description": "Background tunnel without shell",
+      "tags": ["background", "tunnel", "daemon"]
+    },
+    {
+      "template": "ssh-keygen -t rsa -b 4096 -C \"EMAIL\"",
+      "description": "Generate new RSA SSH key pair",
+      "tags": ["keygen", "generate", "rsa"]
+    },
+    {
+      "template": "ssh-keygen -t ed25519 -C \"EMAIL\"",
+      "description": "Generate new Ed25519 SSH key (recommended)",
+      "tags": ["keygen", "generate", "ed25519"]
+    },
+    {
+      "template": "ssh-copy-id USER@HOST",
+      "description": "Copy public key to remote host",
+      "tags": ["copy", "key", "authorize"]
+    },
+    {
+      "template": "ssh-add ~/.ssh/id_rsa",
+      "description": "Add private key to SSH agent",
+      "tags": ["agent", "add", "key"]
+    },
+    {
+      "template": "scp FILE USER@HOST:REMOTE_PATH",
+      "description": "Copy file to remote host via SCP",
+      "tags": ["copy", "transfer", "upload"]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "category": "linux",
+  "commands": [
+    {
+      "template": "systemctl status SERVICE",
+      "description": "Check status of a service",
+      "tags": ["systemctl", "status", "service"]
+    },
+    {
+      "template": "systemctl start SERVICE",
+      "description": "Start a service",
+      "tags": ["systemctl", "start", "service"]
+    },
+    {
+      "template": "systemctl stop SERVICE",
+      "description": "Stop a service",
+      "tags": ["systemctl", "stop", "service"]
+    },
+    {
+      "template": "systemctl restart SERVICE",
+      "description": "Restart a service",
+      "tags": ["systemctl", "restart", "service"]
+    },
+    {
+      "template": "systemctl enable SERVICE",
+      "description": "Enable service to start on boot",
+      "tags": ["systemctl", "enable", "boot"]
+    },
+    {
+      "template": "systemctl disable SERVICE",
+      "description": "Disable service from starting on boot",
+      "tags": ["systemctl", "disable", "boot"]
+    },
+    {
+      "template": "systemctl list-units --type=service",
+      "description": "List all services",
+      "tags": ["systemctl", "list", "services"]
+    },
+    {
+      "template": "journalctl -u SERVICE -f",
+      "description": "Follow logs for a service",
+      "tags": ["journalctl", "logs", "follow"]
+    },
+    {
+      "template": "journalctl -u SERVICE --since today",
+      "description": "View today's logs for a service",
+      "tags": ["journalctl", "logs", "today"]
+    },
+    {
+      "template": "iptables -L -n -v",
+      "description": "List all firewall rules (verbose)",
+      "tags": ["iptables", "firewall", "list"]
+    },
+    {
+      "template": "iptables -A INPUT -p tcp --dport PORT -j ACCEPT",
+      "description": "Allow incoming traffic on port",
+      "tags": ["iptables", "allow", "port"]
+    },
+    {
+      "template": "iptables -A INPUT -s IP -j DROP",
+      "description": "Block traffic from IP address",
+      "tags": ["iptables", "block", "ip"]
+    },
+    {
+      "template": "iptables -D INPUT RULE_NUMBER",
+      "description": "Delete a firewall rule by number",
+      "tags": ["iptables", "delete", "rule"]
+    },
+    {
+      "template": "iptables-save > /etc/iptables/rules.v4",
+      "description": "Save iptables rules",
+      "tags": ["iptables", "save", "persist"]
+    },
+    {
+      "template": "ufw status verbose",
+      "description": "Check UFW firewall status",
+      "tags": ["ufw", "status", "firewall"]
+    },
+    {
+      "template": "ufw enable",
+      "description": "Enable UFW firewall",
+      "tags": ["ufw", "enable", "firewall"]
+    },
+    {
+      "template": "ufw disable",
+      "description": "Disable UFW firewall",
+      "tags": ["ufw", "disable", "firewall"]
+    },
+    {
+      "template": "ufw allow PORT",
+      "description": "Allow incoming traffic on port",
+      "tags": ["ufw", "allow", "port"]
+    },
+    {
+      "template": "ufw allow PORT/tcp",
+      "description": "Allow TCP traffic on port",
+      "tags": ["ufw", "allow", "tcp"]
+    },
+    {
+      "template": "ufw deny PORT",
+      "description": "Deny incoming traffic on port",
+      "tags": ["ufw", "deny", "port"]
+    },
+    {
+      "template": "ufw delete allow PORT",
+      "description": "Delete UFW rule",
+      "tags": ["ufw", "delete", "rule"]
+    },
+    {
+      "template": "ufw allow from IP",
+      "description": "Allow traffic from specific IP",
+      "tags": ["ufw", "allow", "ip"]
+    },
+    {
+      "template": "ufw reset",
+      "description": "Reset UFW to defaults",
+      "tags": ["ufw", "reset", "defaults"]
+    }
+  ]
+}

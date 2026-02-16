@@ -1,0 +1,80 @@
+{
+  "category": "grep",
+  "commands": [
+    {
+      "template": "grep PATTERN FILE",
+      "description": "Search for pattern in file",
+      "tags": ["search", "pattern", "basic"]
+    },
+    {
+      "template": "grep -r PATTERN DIRECTORY",
+      "description": "Recursive search in directory",
+      "tags": ["recursive", "directory", "search"]
+    },
+    {
+      "template": "grep -i PATTERN FILE",
+      "description": "Case-insensitive search",
+      "tags": ["case", "insensitive", "search"]
+    },
+    {
+      "template": "grep -n PATTERN FILE",
+      "description": "Show line numbers",
+      "tags": ["line", "number", "search"]
+    },
+    {
+      "template": "grep -v PATTERN FILE",
+      "description": "Invert match (exclude pattern)",
+      "tags": ["invert", "exclude", "filter"]
+    },
+    {
+      "template": "grep -c PATTERN FILE",
+      "description": "Count matching lines",
+      "tags": ["count", "lines"]
+    },
+    {
+      "template": "grep -l PATTERN *",
+      "description": "List files containing pattern",
+      "tags": ["list", "files", "match"]
+    },
+    {
+      "template": "grep -L PATTERN *",
+      "description": "List files NOT containing pattern",
+      "tags": ["list", "files", "no-match"]
+    },
+    {
+      "template": "grep -A NUM PATTERN FILE",
+      "description": "Show NUM lines after match",
+      "tags": ["after", "context", "lines"]
+    },
+    {
+      "template": "grep -B NUM PATTERN FILE",
+      "description": "Show NUM lines before match",
+      "tags": ["before", "context", "lines"]
+    },
+    {
+      "template": "grep -C NUM PATTERN FILE",
+      "description": "Show NUM lines around match",
+      "tags": ["context", "around", "lines"]
+    },
+    {
+      "template": "grep -E 'REGEX' FILE",
+      "description": "Extended regex (egrep)",
+      "tags": ["regex", "extended", "egrep"]
+    },
+    {
+      "template": "grep -w WORD FILE",
+      "description": "Match whole words only",
+      "tags": ["word", "whole", "exact"]
+    },
+    {
+      "template": "grep --color=auto PATTERN FILE",
+      "description": "Highlight matches with color",
+      "tags": ["color", "highlight"]
+    },
+    {
+      "template": "grep -rn --include='*.EXT' PATTERN DIRECTORY",
+      "description": "Search specific file types recursively",
+      "tags": ["recursive", "filter", "extension"]
+    }
+  ]
+}

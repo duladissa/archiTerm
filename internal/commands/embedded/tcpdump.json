@@ -1,0 +1,80 @@
+{
+  "category": "tcpdump",
+  "commands": [
+    {
+      "template": "tcpdump -i INTERFACE",
+      "description": "Capture packets on specific interface",
+      "tags": ["capture", "interface", "basic"]
+    },
+    {
+      "template": "tcpdump -i any",
+      "description": "Capture packets on all interfaces",
+      "tags": ["capture", "all", "interfaces"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE -n",
+      "description": "Capture without DNS resolution (faster)",
+      "tags": ["capture", "nodns", "numeric"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE port PORT",
+      "description": "Capture packets on specific port",
+      "tags": ["port", "filter", "capture"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE host HOST",
+      "description": "Capture packets for specific host",
+      "tags": ["host", "filter", "ip"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE src HOST",
+      "description": "Capture packets from source host",
+      "tags": ["source", "filter", "from"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE dst HOST",
+      "description": "Capture packets to destination host",
+      "tags": ["destination", "filter", "to"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE -w FILE.pcap",
+      "description": "Write captured packets to file",
+      "tags": ["write", "save", "pcap"]
+    },
+    {
+      "template": "tcpdump -r FILE.pcap",
+      "description": "Read packets from pcap file",
+      "tags": ["read", "file", "pcap"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE -c COUNT",
+      "description": "Capture specific number of packets",
+      "tags": ["count", "limit", "packets"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE -A",
+      "description": "Print packet contents in ASCII",
+      "tags": ["ascii", "content", "payload"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE -X",
+      "description": "Print packet contents in hex and ASCII",
+      "tags": ["hex", "ascii", "payload"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE tcp",
+      "description": "Capture only TCP packets",
+      "tags": ["tcp", "protocol", "filter"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE udp",
+      "description": "Capture only UDP packets",
+      "tags": ["udp", "protocol", "filter"]
+    },
+    {
+      "template": "tcpdump -i INTERFACE icmp",
+      "description": "Capture only ICMP packets (ping)",
+      "tags": ["icmp", "ping", "protocol"]
+    }
+  ]
+}

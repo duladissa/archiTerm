@@ -83,6 +83,15 @@ func getCategoryIcon(category string) string {
 		"ansible":    "🔧",
 		"helm":       "⎈",
 		"aws":        "🔶",
+		"ssh":        "🔐",
+		"tcpdump":    "🔬",
+		"netstat":    "📡",
+		"linux":      "🐧",
+		"nginx":      "🌿",
+		"conda":      "🐍",
+		"tmux":       "🖥️",
+		"grep":       "🔍",
+		"find":       "📂",
 		"custom":     "⚙️",
 	}
 

@@ -124,10 +124,13 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-// handleMouseEvent handles mouse input (scroll wheel only)
+// handleMouseEvent handles mouse input (scroll wheel and selection)
 func (m *Model) handleMouseEvent(msg tea.MouseMsg) (tea.Model, tea.Cmd) {
-	// Only handle scroll wheel events, ignore all other mouse events
-	// This prevents unwanted characters from appearing in input
+	// Calculate if mouse is in output panel area
+	// Output panel is on the right side (approximately after 45% of width)
+	outputPanelStartX := m.layout.GetLeftPanelWidth() + 2
+	isInOutputPanel := msg.X >= outputPanelStartX
+	
 	switch msg.Type {
 	case tea.MouseWheelUp:
 		// Scroll output up
@@ -137,10 +140,32 @@ func (m *Model) handleMouseEvent(msg tea.MouseMsg) (tea.Model, tea.Cmd) {
 		// Scroll output down
 		m.outputPanel.ScrollDown()
 		return m, nil
-	case tea.MouseLeft, tea.MouseRight, tea.MouseMiddle,
-		tea.MouseRelease, tea.MouseMotion:
+	case tea.MouseLeft:
+		// Start selection in output panel (or select all on double-click)
+		if isInOutputPanel {
+			isDoubleClick := m.outputPanel.StartSelection(msg.Y)
+			if isDoubleClick {
+				m.status = "All output selected & copied!"
+			}
+		}
+		return m, nil
+	case tea.MouseMotion:
+		// Update selection while dragging
+		if isInOutputPanel && m.outputPanel.IsSelecting {
+			m.outputPanel.UpdateSelection(msg.Y)
+		}
+		return m, nil
+	case tea.MouseRelease:
+		// End selection and copy to clipboard
+		if isInOutputPanel && m.outputPanel.IsSelecting {
+			selectedText := m.outputPanel.EndSelection()
+			if selectedText != "" {
+				m.outputPanel.CopySelection()
+			}
+		}
+		return m, nil
+	case tea.MouseRight, tea.MouseMiddle:
 		// Consume these events without doing anything
-		// This prevents raw escape sequences from leaking
 		return m, nil
 	}
 	return m, nil
@@ -275,31 +300,38 @@ func (m *Model) handleKeyPress(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 
 	case tea.KeyRunes:
 		// Filter out mouse escape sequence characters that might leak through
-		// Mouse sequences look like: ESC [ < Btn ; X ; Y M/m or similar
-		// They can appear as fragments like "[", "<64", ";123;45M"
+		// Mouse sequences typically have multiple characters with digits and special chars
+		// e.g., "<64;123;45M" or similar patterns
 		
-		// Skip if the message contains common escape sequence patterns
+		// Only filter if it looks like a mouse escape sequence (has digits + special chars)
 		runeStr := string(msg.Runes)
-		if len(msg.Runes) == 1 && msg.Runes[0] == '[' {
-			// Lone bracket is often part of escape sequence
-			return m, nil
+		if len(msg.Runes) > 3 {
+			// Check if it contains digits mixed with semicolons (likely mouse coords)
+			hasDigit := false
+			hasSemicolon := false
+			for _, r := range msg.Runes {
+				if r >= '0' && r <= '9' {
+					hasDigit = true
+				}
+				if r == ';' {
+					hasSemicolon = true
+				}
+			}
+			if hasDigit && hasSemicolon {
+				// Likely a mouse escape sequence, ignore
+				return m, nil
+			}
 		}
-		if len(msg.Runes) > 2 {
-			// Likely escape sequence fragment
+		
+		// Check for specific mouse sequence patterns like "<0;123;45M"
+		if len(runeStr) > 5 && (runeStr[0] == '<' || runeStr[0] == '[') {
 			return m, nil
 		}
 		
 		for _, r := range msg.Runes {
-			// Filter out control characters and special chars used in escape sequences
+			// Only filter out control characters
 			if r < 32 || r == 127 {
 				continue
-			}
-			// Skip escape sequence delimiters when they appear alone
-			if r == '[' || r == ';' || r == '<' || r == 'M' || r == 'm' {
-				// Check if this might be part of mouse sequence
-				if len(runeStr) == 1 {
-					continue
-				}
 			}
 			m.inputPanel.InsertChar(r)
 		}

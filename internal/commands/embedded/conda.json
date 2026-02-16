@@ -1,0 +1,80 @@
+{
+  "category": "conda",
+  "commands": [
+    {
+      "template": "conda create -n ENV_NAME python=VERSION",
+      "description": "Create new conda environment",
+      "tags": ["create", "environment", "python"]
+    },
+    {
+      "template": "conda activate ENV_NAME",
+      "description": "Activate conda environment",
+      "tags": ["activate", "environment"]
+    },
+    {
+      "template": "conda deactivate",
+      "description": "Deactivate current environment",
+      "tags": ["deactivate", "environment"]
+    },
+    {
+      "template": "conda env list",
+      "description": "List all conda environments",
+      "tags": ["list", "environments"]
+    },
+    {
+      "template": "conda list",
+      "description": "List packages in current environment",
+      "tags": ["list", "packages"]
+    },
+    {
+      "template": "conda install PACKAGE",
+      "description": "Install a package",
+      "tags": ["install", "package"]
+    },
+    {
+      "template": "conda install -c CHANNEL PACKAGE",
+      "description": "Install from specific channel",
+      "tags": ["install", "channel"]
+    },
+    {
+      "template": "conda install -c conda-forge PACKAGE",
+      "description": "Install from conda-forge",
+      "tags": ["install", "conda-forge"]
+    },
+    {
+      "template": "conda update --all",
+      "description": "Update all packages",
+      "tags": ["update", "all", "packages"]
+    },
+    {
+      "template": "conda update conda",
+      "description": "Update conda itself",
+      "tags": ["update", "conda"]
+    },
+    {
+      "template": "conda remove PACKAGE",
+      "description": "Remove a package",
+      "tags": ["remove", "uninstall", "package"]
+    },
+    {
+      "template": "conda env remove -n ENV_NAME",
+      "description": "Delete an environment",
+      "tags": ["remove", "delete", "environment"]
+    },
+    {
+      "template": "conda env export > environment.yml",
+      "description": "Export environment to YAML",
+      "tags": ["export", "yaml", "environment"]
+    },
+    {
+      "template": "conda env create -f environment.yml",
+      "description": "Create environment from YAML",
+      "tags": ["create", "yaml", "import"]
+    },
+    {
+      "template": "conda clean --all",
+      "description": "Clean unused packages and caches",
+      "tags": ["clean", "cache", "packages"]
+    }
+  ]
+}

@@ -2,6 +2,7 @@ package ui
 
 import (
 	"strings"
+	"time"
 
 	"github.com/atotto/clipboard"
 	"github.com/charmbracelet/lipgloss"
@@ -25,6 +26,13 @@ type OutputPanel struct {
 	Height        int
 	styles        *Styles
 	CopyMessage   string // Temporary message shown after copy
+	
+	// Mouse selection state
+	IsSelecting     bool
+	SelectionStart  int // Line number where selection started
+	SelectionEnd    int // Line number where selection ended
+	SelectedText    string
+	LastClickTime   int64 // For double-click detection (unix nano)
 }
 
 // NewOutputPanel creates a new output panel
@@ -150,6 +158,118 @@ func (p *OutputPanel) ClearCopyMessage() {
 	p.CopyMessage = ""
 }
 
+// StartSelection starts mouse text selection at a given line
+// Returns true if this was a double-click (select all)
+func (p *OutputPanel) StartSelection(lineY int) bool {
+	now := time.Now().UnixNano()
+	doubleClickThreshold := int64(500 * time.Millisecond) // 500ms threshold
+	
+	// Check for double-click
+	if now-p.LastClickTime < doubleClickThreshold {
+		// Double-click detected - select all
+		p.SelectAll()
+		p.LastClickTime = 0 // Reset to prevent triple-click
+		return true
+	}
+	
+	p.LastClickTime = now
+	
+	actualLine := p.ScrollOffset + lineY - 2 // Adjust for border and title
+	if actualLine >= 0 && actualLine < len(p.Lines) {
+		p.IsSelecting = true
+		p.SelectionStart = actualLine
+		p.SelectionEnd = actualLine
+		p.SelectedText = ""
+	}
+	return false
+}
+
+// SelectAll selects all content in the output panel
+func (p *OutputPanel) SelectAll() {
+	if len(p.Lines) == 0 {
+		return
+	}
+	p.SelectionStart = 0
+	p.SelectionEnd = len(p.Lines) - 1
+	p.SelectedText = strings.Join(p.Lines, "\n")
+	p.IsSelecting = false
+	
+	// Auto-copy on select all
+	p.CopySelection()
+}
+
+// UpdateSelection updates the selection end point
+func (p *OutputPanel) UpdateSelection(lineY int) {
+	if !p.IsSelecting {
+		return
+	}
+	actualLine := p.ScrollOffset + lineY - 2 // Adjust for border and title
+	if actualLine >= 0 && actualLine < len(p.Lines) {
+		p.SelectionEnd = actualLine
+	}
+}
+
+// EndSelection ends the selection and builds the selected text
+func (p *OutputPanel) EndSelection() string {
+	if !p.IsSelecting {
+		return ""
+	}
+	p.IsSelecting = false
+	
+	// Ensure start <= end
+	start, end := p.SelectionStart, p.SelectionEnd
+	if start > end {
+		start, end = end, start
+	}
+	
+	// Build selected text
+	var selectedLines []string
+	for i := start; i <= end && i < len(p.Lines); i++ {
+		selectedLines = append(selectedLines, p.Lines[i])
+	}
+	p.SelectedText = strings.Join(selectedLines, "\n")
+	return p.SelectedText
+}
+
+// CopySelection copies the selected text to clipboard
+func (p *OutputPanel) CopySelection() error {
+	if p.SelectedText == "" {
+		return nil
+	}
+	err := clipboard.WriteAll(p.SelectedText)
+	if err != nil {
+		p.CopyMessage = "❌ Copy failed!"
+		return err
+	}
+	p.CopyMessage = "✅ Selection copied!"
+	return nil
+}
+
+// ClearSelection clears the current selection
+func (p *OutputPanel) ClearSelection() {
+	p.IsSelecting = false
+	p.SelectionStart = 0
+	p.SelectionEnd = 0
+	p.SelectedText = ""
+}
+
+// HasSelection returns true if there's an active selection
+func (p *OutputPanel) HasSelection() bool {
+	return p.SelectedText != ""
+}
+
+// IsLineSelected returns true if the given line index is part of the selection
+func (p *OutputPanel) IsLineSelected(lineIndex int) bool {
+	if p.SelectedText == "" && !p.IsSelecting {
+		return false
+	}
+	start, end := p.SelectionStart, p.SelectionEnd
+	if start > end {
+		start, end = end, start
+	}
+	return lineIndex >= start && lineIndex <= end
+}
+
 // Clear clears the output
 func (p *OutputPanel) Clear() {
 	p.Content = ""
@@ -247,6 +367,15 @@ func (p *OutputPanel) View() string {
 			
 			// Apply Unix/Linux style coloring based on line type
 			styledLine := p.styleLine(line)
+			
+			// Highlight selected lines
+			if p.IsLineSelected(i) {
+				styledLine = lipgloss.NewStyle().
+					Background(lipgloss.Color("#3B82F6")).
+					Foreground(lipgloss.Color("#FFFFFF")).
+					Render(line)
+			}
+			
 			lines = append(lines, styledLine)
 		}
 
