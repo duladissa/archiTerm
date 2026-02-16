@@ -11,28 +11,13 @@ import (
 	"time"
 )
 
-// openBrowser opens a URL in the default browser
-func openBrowser(url string) error {
-	var cmd *exec.Cmd
-	switch runtime.GOOS {
-	case "windows":
-		cmd = exec.Command("rundll32", "url.dll,FileProtocolHandler", url)
-	case "darwin":
-		cmd = exec.Command("open", url)
-	default: // linux, freebsd, etc.
-		cmd = exec.Command("xdg-open", url)
-	}
-	return cmd.Start()
-}
-
 // Result represents the result of a command execution
 type Result struct {
-	Command    string
-	Output     string
-	Error      string
-	ExitCode   int
-	Duration   time.Duration
-	InstallURL string // URL for installing missing command (used for "command not found")
+	Command  string
+	Output   string
+	Error    string
+	ExitCode int
+	Duration time.Duration
 }
 
 // Executor handles command execution
@@ -137,7 +122,7 @@ func (e *Executor) IsRunning() bool {
 type CommandNotFoundInfo struct {
 	Command     string
 	InstallHint string
-	InstallURL  string
+	InstallURL  string // URL for documentation/download page
 }
 
 // knownCommands maps commands to their installation hints
@@ -272,14 +257,6 @@ var knownCommands = map[string]CommandNotFoundInfo{
 		InstallHint: "find is usually pre-installed. Install: apt install findutils (Linux)",
 		InstallURL:  "",
 	},
-}
-
-// OpenInstallURL opens the install URL for the last command not found error
-func OpenInstallURL(url string) error {
-	if url == "" {
-		return fmt.Errorf("no install URL available")
-	}
-	return openBrowser(url)
 }
 
 // isCommandNotFound checks if the error indicates a missing command

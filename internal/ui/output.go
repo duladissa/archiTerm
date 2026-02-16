@@ -153,11 +153,6 @@ func (p *OutputPanel) CopyLastCommand() error {
 	return nil
 }
 
-// ClearCopyMessage clears the copy message
-func (p *OutputPanel) ClearCopyMessage() {
-	p.CopyMessage = ""
-}
-
 // StartSelection starts mouse text selection at a given line
 // Returns true if this was a double-click (select all)
 func (p *OutputPanel) StartSelection(lineY int) bool {
