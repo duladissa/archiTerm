@@ -1,0 +1,60 @@
+# archiTerm Custom Commands Configuration
+# Add your own frequently used commands here
+#
+# Format:
+#   commands:
+#     - template: "command template"
+#       description: "What the command does"
+#       category: "category name"
+#       tags:
+#         - tag1
+#         - tag2
+
+commands:
+  # Example custom commands
+  - template: "ssh user@hostname"
+    description: "SSH to a remote server"
+    category: "custom"
+    tags:
+      - ssh
+      - remote
+      - connect
+
+  - template: "scp file user@hostname:/path"
+    description: "Copy file to remote server"
+    category: "custom"
+    tags:
+      - scp
+      - copy
+      - remote
+
+  - template: "tail -f /var/log/syslog"
+    description: "Follow system log"
+    category: "custom"
+    tags:
+      - logs
+      - tail
+      - follow
+
+  - template: "htop"
+    description: "Interactive process viewer"
+    category: "custom"
+    tags:
+      - process
+      - monitor
+
+  - template: "df -h"
+    description: "Show disk usage (human readable)"
+    category: "custom"
+    tags:
+      - disk
+      - usage
+      - storage
+
+  - template: "free -h"
+    description: "Show memory usage (human readable)"
+    category: "custom"
+    tags:
+      - memory
+      - ram
+      - usage

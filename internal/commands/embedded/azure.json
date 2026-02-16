@@ -1,0 +1,80 @@
+{
+  "category": "azure",
+  "commands": [
+    {
+      "template": "az login",
+      "description": "Login to Azure",
+      "tags": ["auth", "login"]
+    },
+    {
+      "template": "az account list",
+      "description": "List all subscriptions",
+      "tags": ["account", "subscription", "list"]
+    },
+    {
+      "template": "az account set --subscription SUBSCRIPTION",
+      "description": "Set active subscription",
+      "tags": ["account", "subscription", "set"]
+    },
+    {
+      "template": "az account show",
+      "description": "Show current subscription",
+      "tags": ["account", "subscription", "current"]
+    },
+    {
+      "template": "az vm list",
+      "description": "List all virtual machines",
+      "tags": ["vm", "list"]
+    },
+    {
+      "template": "az vm start --name NAME --resource-group RG",
+      "description": "Start a virtual machine",
+      "tags": ["vm", "start"]
+    },
+    {
+      "template": "az vm stop --name NAME --resource-group RG",
+      "description": "Stop a virtual machine",
+      "tags": ["vm", "stop"]
+    },
+    {
+      "template": "az aks list",
+      "description": "List AKS clusters",
+      "tags": ["aks", "kubernetes", "list"]
+    },
+    {
+      "template": "az aks get-credentials --name CLUSTER --resource-group RG",
+      "description": "Get AKS cluster credentials",
+      "tags": ["aks", "kubernetes", "credentials"]
+    },
+    {
+      "template": "az group list",
+      "description": "List resource groups",
+      "tags": ["resource-group", "list"]
+    },
+    {
+      "template": "az group create --name NAME --location LOCATION",
+      "description": "Create a resource group",
+      "tags": ["resource-group", "create"]
+    },
+    {
+      "template": "az storage account list",
+      "description": "List storage accounts",
+      "tags": ["storage", "list"]
+    },
+    {
+      "template": "az webapp list",
+      "description": "List web apps",
+      "tags": ["webapp", "list"]
+    },
+    {
+      "template": "az acr list",
+      "description": "List container registries",
+      "tags": ["acr", "container", "registry"]
+    },
+    {
+      "template": "az network vnet list",
+      "description": "List virtual networks",
+      "tags": ["network", "vnet", "list"]
+    }
+  ]
+}

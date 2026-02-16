@@ -1,0 +1,80 @@
+{
+  "category": "curl",
+  "commands": [
+    {
+      "template": "curl URL",
+      "description": "Simple GET request",
+      "tags": ["get", "http", "request"]
+    },
+    {
+      "template": "curl -X GET URL",
+      "description": "Explicit GET request",
+      "tags": ["get", "http", "request"]
+    },
+    {
+      "template": "curl -X POST URL",
+      "description": "POST request",
+      "tags": ["post", "http", "request"]
+    },
+    {
+      "template": "curl -X POST -H \"Content-Type: application/json\" -d '{\"key\":\"value\"}' URL",
+      "description": "POST JSON data",
+      "tags": ["post", "json", "http"]
+    },
+    {
+      "template": "curl -X PUT -H \"Content-Type: application/json\" -d '{\"key\":\"value\"}' URL",
+      "description": "PUT JSON data",
+      "tags": ["put", "json", "http"]
+    },
+    {
+      "template": "curl -X DELETE URL",
+      "description": "DELETE request",
+      "tags": ["delete", "http", "request"]
+    },
+    {
+      "template": "curl -H \"Authorization: Bearer TOKEN\" URL",
+      "description": "Request with Bearer token",
+      "tags": ["auth", "bearer", "token"]
+    },
+    {
+      "template": "curl -u USER:PASSWORD URL",
+      "description": "Basic authentication",
+      "tags": ["auth", "basic"]
+    },
+    {
+      "template": "curl -k URL",
+      "description": "Ignore SSL certificate errors",
+      "tags": ["ssl", "insecure"]
+    },
+    {
+      "template": "curl -v URL",
+      "description": "Verbose output (show headers)",
+      "tags": ["verbose", "debug", "headers"]
+    },
+    {
+      "template": "curl -k -v URL",
+      "description": "Verbose with SSL ignore",
+      "tags": ["verbose", "debug", "ssl"]
+    },
+    {
+      "template": "curl -o FILE URL",
+      "description": "Download to file",
+      "tags": ["download", "file", "output"]
+    },
+    {
+      "template": "curl -O URL",
+      "description": "Download with original filename",
+      "tags": ["download", "file"]
+    },
+    {
+      "template": "curl -I URL",
+      "description": "Fetch headers only",
+      "tags": ["headers", "head"]
+    },
+    {
+      "template": "curl -L URL",
+      "description": "Follow redirects",
+      "tags": ["redirect", "follow"]
+    }
+  ]
+}

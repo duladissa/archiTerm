@@ -1,0 +1,64 @@
+{
+  "commands": [
+    {
+      "template": "terraform init",
+      "description": "Initialize Terraform working directory",
+      "category": "terraform",
+      "tags": ["terraform", "init", "iac"]
+    },
+    {
+      "template": "terraform plan",
+      "description": "Show Terraform execution plan",
+      "category": "terraform",
+      "tags": ["terraform", "plan", "iac"]
+    },
+    {
+      "template": "terraform apply",
+      "description": "Apply Terraform changes",
+      "category": "terraform",
+      "tags": ["terraform", "apply", "iac"]
+    },
+    {
+      "template": "terraform destroy",
+      "description": "Destroy Terraform-managed infrastructure",
+      "category": "terraform",
+      "tags": ["terraform", "destroy", "iac"]
+    },
+    {
+      "template": "ansible-playbook playbook.yml",
+      "description": "Run Ansible playbook",
+      "category": "ansible",
+      "tags": ["ansible", "playbook", "automation"]
+    },
+    {
+      "template": "ansible-playbook -i inventory playbook.yml",
+      "description": "Run Ansible playbook with inventory",
+      "category": "ansible",
+      "tags": ["ansible", "playbook", "inventory"]
+    },
+    {
+      "template": "helm install RELEASE CHART",
+      "description": "Install a Helm chart",
+      "category": "helm",
+      "tags": ["helm", "kubernetes", "install"]
+    },
+    {
+      "template": "helm upgrade RELEASE CHART",
+      "description": "Upgrade a Helm release",
+      "category": "helm",
+      "tags": ["helm", "kubernetes", "upgrade"]
+    },
+    {
+      "template": "helm list",
+      "description": "List Helm releases",
+      "category": "helm",
+      "tags": ["helm", "kubernetes", "list"]
+    },
+    {
+      "template": "helm uninstall RELEASE",
+      "description": "Uninstall a Helm release",
+      "category": "helm",
+      "tags": ["helm", "kubernetes", "uninstall"]
+    }
+  ]
+}

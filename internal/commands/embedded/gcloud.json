@@ -1,0 +1,80 @@
+{
+  "category": "gcloud",
+  "commands": [
+    {
+      "template": "gcloud auth login",
+      "description": "Authenticate with Google Cloud",
+      "tags": ["auth", "login"]
+    },
+    {
+      "template": "gcloud auth list",
+      "description": "List authenticated accounts",
+      "tags": ["auth", "list"]
+    },
+    {
+      "template": "gcloud config set project PROJECT_ID",
+      "description": "Set the active project",
+      "tags": ["config", "project"]
+    },
+    {
+      "template": "gcloud config list",
+      "description": "List current configuration",
+      "tags": ["config", "list"]
+    },
+    {
+      "template": "gcloud compute instances list",
+      "description": "List all compute instances",
+      "tags": ["compute", "vm", "list"]
+    },
+    {
+      "template": "gcloud compute instances start INSTANCE --zone=ZONE",
+      "description": "Start a compute instance",
+      "tags": ["compute", "vm", "start"]
+    },
+    {
+      "template": "gcloud compute instances stop INSTANCE --zone=ZONE",
+      "description": "Stop a compute instance",
+      "tags": ["compute", "vm", "stop"]
+    },
+    {
+      "template": "gcloud compute ssh INSTANCE --zone=ZONE",
+      "description": "SSH into a compute instance",
+      "tags": ["compute", "ssh", "connect"]
+    },
+    {
+      "template": "gcloud container clusters list",
+      "description": "List GKE clusters",
+      "tags": ["gke", "kubernetes", "list"]
+    },
+    {
+      "template": "gcloud container clusters get-credentials CLUSTER --zone=ZONE",
+      "description": "Get credentials for GKE cluster",
+      "tags": ["gke", "kubernetes", "credentials"]
+    },
+    {
+      "template": "gcloud projects list",
+      "description": "List all projects",
+      "tags": ["projects", "list"]
+    },
+    {
+      "template": "gcloud services list --enabled",
+      "description": "List enabled APIs",
+      "tags": ["services", "api", "list"]
+    },
+    {
+      "template": "gcloud iam service-accounts list",
+      "description": "List service accounts",
+      "tags": ["iam", "service-account", "list"]
+    },
+    {
+      "template": "gcloud storage ls",
+      "description": "List Cloud Storage buckets",
+      "tags": ["storage", "bucket", "list"]
+    },
+    {
+      "template": "gcloud storage cp SOURCE DESTINATION",
+      "description": "Copy files to/from Cloud Storage",
+      "tags": ["storage", "copy", "upload"]
+    }
+  ]
+}

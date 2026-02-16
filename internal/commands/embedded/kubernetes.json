@@ -1,0 +1,80 @@
+{
+  "category": "kubernetes",
+  "commands": [
+    {
+      "template": "kubectl get pods",
+      "description": "List all pods in current namespace",
+      "tags": ["pods", "list"]
+    },
+    {
+      "template": "kubectl get pods -n NAMESPACE",
+      "description": "List pods in specific namespace",
+      "tags": ["pods", "list", "namespace"]
+    },
+    {
+      "template": "kubectl get pods --all-namespaces",
+      "description": "List pods in all namespaces",
+      "tags": ["pods", "list", "all"]
+    },
+    {
+      "template": "kubectl get services",
+      "description": "List all services",
+      "tags": ["services", "list", "svc"]
+    },
+    {
+      "template": "kubectl get deployments",
+      "description": "List all deployments",
+      "tags": ["deployments", "list", "deploy"]
+    },
+    {
+      "template": "kubectl describe pod POD -n NAMESPACE",
+      "description": "Describe a pod in detail",
+      "tags": ["describe", "pod", "detail"]
+    },
+    {
+      "template": "kubectl describe secret SECRET -n NAMESPACE",
+      "description": "Describe a secret in detail",
+      "tags": ["describe", "secret", "detail"]
+    },
+    {
+      "template": "kubectl logs POD -n NAMESPACE",
+      "description": "Get logs from a pod",
+      "tags": ["logs", "pod"]
+    },
+    {
+      "template": "kubectl logs -f POD -n NAMESPACE",
+      "description": "Follow logs from a pod",
+      "tags": ["logs", "follow", "tail"]
+    },
+    {
+      "template": "kubectl exec -it POD -n NAMESPACE -- /bin/bash",
+      "description": "Execute bash in a pod",
+      "tags": ["exec", "interactive", "shell"]
+    },
+    {
+      "template": "kubectl apply -f FILE",
+      "description": "Apply a configuration file",
+      "tags": ["apply", "config", "yaml"]
+    },
+    {
+      "template": "kubectl delete -f FILE",
+      "description": "Delete resources from a file",
+      "tags": ["delete", "remove"]
+    },
+    {
+      "template": "kubectl get nodes",
+      "description": "List all nodes in the cluster",
+      "tags": ["nodes", "list", "cluster"]
+    },
+    {
+      "template": "kubectl config get-contexts",
+      "description": "List all contexts",
+      "tags": ["config", "context", "list"]
+    },
+    {
+      "template": "kubectl config use-context CONTEXT",
+      "description": "Switch to a different context",
+      "tags": ["config", "context", "switch"]
+    }
+  ]
+}

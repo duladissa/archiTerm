@@ -1,0 +1,80 @@
+{
+  "category": "git",
+  "commands": [
+    {
+      "template": "git status",
+      "description": "Show working tree status",
+      "tags": ["status", "changes"]
+    },
+    {
+      "template": "git pull",
+      "description": "Fetch and merge from remote",
+      "tags": ["pull", "fetch", "merge"]
+    },
+    {
+      "template": "git push",
+      "description": "Push commits to remote",
+      "tags": ["push", "remote"]
+    },
+    {
+      "template": "git push -u origin BRANCH",
+      "description": "Push and set upstream",
+      "tags": ["push", "upstream", "branch"]
+    },
+    {
+      "template": "git checkout BRANCH",
+      "description": "Switch to branch",
+      "tags": ["checkout", "branch", "switch"]
+    },
+    {
+      "template": "git checkout -b BRANCH",
+      "description": "Create and switch to new branch",
+      "tags": ["checkout", "branch", "create"]
+    },
+    {
+      "template": "git branch",
+      "description": "List local branches",
+      "tags": ["branch", "list"]
+    },
+    {
+      "template": "git branch -a",
+      "description": "List all branches (including remote)",
+      "tags": ["branch", "list", "all"]
+    },
+    {
+      "template": "git add .",
+      "description": "Stage all changes",
+      "tags": ["add", "stage"]
+    },
+    {
+      "template": "git commit -m \"MESSAGE\"",
+      "description": "Commit with message",
+      "tags": ["commit", "message"]
+    },
+    {
+      "template": "git log --oneline -n 10",
+      "description": "Show last 10 commits (one line each)",
+      "tags": ["log", "history"]
+    },
+    {
+      "template": "git diff",
+      "description": "Show unstaged changes",
+      "tags": ["diff", "changes"]
+    },
+    {
+      "template": "git stash",
+      "description": "Stash current changes",
+      "tags": ["stash", "save"]
+    },
+    {
+      "template": "git stash pop",
+      "description": "Apply and remove stash",
+      "tags": ["stash", "apply"]
+    },
+    {
+      "template": "git reset --hard HEAD",
+      "description": "Discard all local changes",
+      "tags": ["reset", "discard"]
+    }
+  ]
+}

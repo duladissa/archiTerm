@@ -1,0 +1,80 @@
+{
+  "category": "docker",
+  "commands": [
+    {
+      "template": "docker ps",
+      "description": "List running containers",
+      "tags": ["container", "list", "running"]
+    },
+    {
+      "template": "docker ps -a",
+      "description": "List all containers (including stopped)",
+      "tags": ["container", "list", "all"]
+    },
+    {
+      "template": "docker images",
+      "description": "List all images",
+      "tags": ["image", "list"]
+    },
+    {
+      "template": "docker logs -f CONTAINER",
+      "description": "Follow logs of a container",
+      "tags": ["logs", "follow", "tail"]
+    },
+    {
+      "template": "docker exec -it CONTAINER /bin/bash",
+      "description": "Execute interactive bash in container",
+      "tags": ["exec", "interactive", "shell"]
+    },
+    {
+      "template": "docker exec -it CONTAINER /bin/sh",
+      "description": "Execute interactive sh in container",
+      "tags": ["exec", "interactive", "shell"]
+    },
+    {
+      "template": "docker build -t IMAGE:TAG .",
+      "description": "Build image from Dockerfile",
+      "tags": ["build", "image"]
+    },
+    {
+      "template": "docker run -d --name NAME IMAGE",
+      "description": "Run container in detached mode",
+      "tags": ["run", "detached"]
+    },
+    {
+      "template": "docker run -it --rm IMAGE",
+      "description": "Run interactive container and remove on exit",
+      "tags": ["run", "interactive", "temporary"]
+    },
+    {
+      "template": "docker stop CONTAINER",
+      "description": "Stop a running container",
+      "tags": ["stop", "container"]
+    },
+    {
+      "template": "docker rm CONTAINER",
+      "description": "Remove a container",
+      "tags": ["remove", "container"]
+    },
+    {
+      "template": "docker rmi IMAGE",
+      "description": "Remove an image",
+      "tags": ["remove", "image"]
+    },
+    {
+      "template": "docker-compose up -d",
+      "description": "Start services in detached mode",
+      "tags": ["compose", "up", "start"]
+    },
+    {
+      "template": "docker-compose -f FILE up --build",
+      "description": "Build and start services from specific file",
+      "tags": ["compose", "build", "up"]
+    },
+    {
+      "template": "docker-compose down",
+      "description": "Stop and remove containers",
+      "tags": ["compose", "down", "stop"]
+    }
+  ]
+}
