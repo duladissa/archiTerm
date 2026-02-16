@@ -3,12 +3,12 @@ package app
 import (
 	"fmt"
 
-	"github.com/architerm/architerm/internal/autocomplete"
-	"github.com/architerm/architerm/internal/commands"
-	"github.com/architerm/architerm/internal/executor"
-	"github.com/architerm/architerm/internal/history"
-	"github.com/architerm/architerm/internal/theme"
-	"github.com/architerm/architerm/internal/ui"
+	"github.com/duladissa/architerm/internal/autocomplete"
+	"github.com/duladissa/architerm/internal/commands"
+	"github.com/duladissa/architerm/internal/executor"
+	"github.com/duladissa/architerm/internal/history"
+	"github.com/duladissa/architerm/internal/theme"
+	"github.com/duladissa/architerm/internal/ui"
 	tea "github.com/charmbracelet/bubbletea"
 )
 

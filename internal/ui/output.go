@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/architerm/architerm/internal/theme"
+	"github.com/duladissa/architerm/internal/theme"
 	"github.com/atotto/clipboard"
 	"github.com/charmbracelet/lipgloss"
 )

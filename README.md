@@ -13,6 +13,7 @@ A lightweight, cross-platform TUI (Terminal User Interface) application for arch
 - **🔮 Smart Autocomplete**: Gmail-style autocomplete with ghost text suggestions
 - **📦 Pre-loaded Commands**: Top 10-15 commands for Docker, Kubernetes, gcloud, Azure, curl, and git
 - **🎨 Beautiful TUI**: Side-by-side panel interface with modern styling
+- **🌈 Multiple Themes**: 5 built-in color themes (dark, light, dracula, nord, gruvbox) with runtime switching
 - **🎯 Unix/Linux Colors**: Familiar terminal color scheme (green prompt, yellow commands, etc.)
 - **📋 Easy Copy**: One-key copy of command output or command text to clipboard
 - **⚡ Lightweight**: Single binary, no dependencies required at runtime
@@ -68,13 +69,13 @@ A lightweight, cross-platform TUI (Terminal User Interface) application for arch
 ### Using Go Install
 
 ```bash
-go install github.com/architerm/architerm@latest
+go install github.com/duladissa/architerm@latest
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/architerm/architerm.git
+git clone https://github.com/duladissa/architerm.git
 cd architerm
 make build
 ./build/architerm
@@ -82,7 +83,7 @@ make build
 
 ### Pre-built Binaries
 
-Download the latest release for your platform from the [Releases](https://github.com/architerm/architerm/releases) page.
+Download the latest release for your platform from the [Releases](https://github.com/duladissa/architerm/releases) page.
 
 | Platform | Architecture | Download |
 |----------|--------------|----------|
@@ -119,6 +120,7 @@ architerm version
 | `Esc` | Clear input |
 | `Ctrl+L` | Clear output |
 | `Ctrl+U` | Clear input line |
+| `Ctrl+T` | Cycle through color themes |
 | `Ctrl+C` | Cancel running command / Exit |
 
 ### Copy Shortcuts
@@ -199,6 +201,35 @@ The command 'gcloud' is not installed or not in PATH.
 |--------|--------|
 | Scroll wheel up | Scroll output up |
 | Scroll wheel down | Scroll output down |
+
+## 🎨 Themes
+
+archiTerm comes with 5 built-in color themes:
+
+| Theme | Description |
+|-------|-------------|
+| `dark` | Default dark theme with purple/cyan accents |
+| `light` | Light theme for bright environments |
+| `dracula` | Popular Dracula color scheme |
+| `nord` | Nord-inspired arctic color palette |
+| `gruvbox` | Retro groove color scheme |
+
+### Using Themes
+
+```bash
+# Start with a specific theme
+architerm --theme dracula
+
+# List available themes
+architerm themes
+
+# Preview a theme's colors
+architerm theme-preview nord
+```
+
+### Runtime Theme Switching
+
+Press **`Ctrl+T`** while running to cycle through themes instantly! The current theme name will briefly appear in the status bar.
 
 ## 🔧 Configuration
 

@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/architerm/architerm/internal/app"
-	"github.com/architerm/architerm/internal/theme"
+	"github.com/duladissa/architerm/internal/app"
+	"github.com/duladissa/architerm/internal/theme"
 	"github.com/spf13/cobra"
 )
 

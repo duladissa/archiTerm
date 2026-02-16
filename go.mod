@@ -1,4 +1,4 @@
-module github.com/architerm/architerm
+module github.com/duladissa/architerm
 
 go 1.21
 

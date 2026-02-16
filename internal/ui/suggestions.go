@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/architerm/architerm/internal/autocomplete"
+	"github.com/duladissa/architerm/internal/autocomplete"
 )
 
 // SuggestionsPanel represents the suggestions area

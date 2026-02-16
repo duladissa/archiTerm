@@ -1,7 +1,7 @@
 package ui
 
 import (
-	"github.com/architerm/architerm/internal/theme"
+	"github.com/duladissa/architerm/internal/theme"
 	"github.com/charmbracelet/lipgloss"
 )
 

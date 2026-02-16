@@ -7,7 +7,7 @@ BUILD_DIR := build
 GO := go
 
 # Build flags
-LDFLAGS := -ldflags "-s -w -X 'github.com/architerm/architerm/cmd.version=$(VERSION)'"
+LDFLAGS := -ldflags "-s -w -X 'github.com/duladissa/architerm/cmd.version=$(VERSION)'"
 
 # Determine OS
 UNAME_S := $(shell uname -s 2>/dev/null || echo Windows)

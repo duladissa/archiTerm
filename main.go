@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/architerm/architerm/cmd"
+	"github.com/duladissa/architerm/cmd"
 )
 
 func main() {
