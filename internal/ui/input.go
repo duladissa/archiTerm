@@ -151,9 +151,10 @@ func (p *InputPanel) View() string {
 		content += strings.Repeat(" ", p.Width-6-contentWidth)
 	}
 
-	// Render panel with title in border
+	// Render panel with title in border (height 3 for content + 2 for borders = 5 total)
 	panel := p.styles.InputPanel.
 		Width(p.Width - 2).
+		Height(2).
 		BorderTop(true).
 		BorderLeft(true).
 		BorderRight(true).

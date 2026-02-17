@@ -2,7 +2,7 @@
 # Cross-platform build for Windows, Linux, and macOS
 
 APP_NAME := architerm
-VERSION := 0.1.0
+VERSION := 1.0.0
 BUILD_DIR := build
 GO := go
 

@@ -86,43 +86,6 @@ func DarkTheme() *Theme {
 	}
 }
 
-// LightTheme returns a light theme
-func LightTheme() *Theme {
-	return &Theme{
-		Name: "light",
-		Colors: ThemeColors{
-			// Primary UI colors
-			Primary:     "#7C3AED", // Purple
-			Secondary:   "#0891B2", // Cyan
-			Accent:      "#059669", // Green
-			Background:  "#F9FAFB", // White
-			Foreground:  "#111827", // Dark
-			Border:      "#D1D5DB", // Light gray
-			
-			// Status colors
-			Success:     "#059669", // Green
-			Warning:     "#D97706", // Amber
-			Error:       "#DC2626", // Red
-			Muted:       "#9CA3AF", // Gray
-			
-			// Output colors
-			Prompt:      "#059669", // Green
-			Command:     "#B45309", // Amber
-			Output:      "#374151", // Dark gray
-			Separator:   "#7C3AED", // Purple
-			
-			// Suggestion colors
-			Suggestion:      "#111827", // Dark
-			SuggestionHint:  "#9CA3AF", // Muted
-			SuggestionMatch: "#2563EB", // Blue
-			
-			// Selection
-			SelectionBg: "#3B82F6", // Blue
-			SelectionFg: "#FFFFFF", // White
-		},
-	}
-}
-
 // DraculaTheme returns a Dracula-inspired theme
 func DraculaTheme() *Theme {
 	return &Theme{
@@ -237,8 +200,6 @@ func GruvboxTheme() *Theme {
 // GetTheme returns a theme by name
 func GetTheme(name string) *Theme {
 	switch name {
-	case "light":
-		return LightTheme()
 	case "dracula":
 		return DraculaTheme()
 	case "nord":
@@ -254,7 +215,7 @@ func GetTheme(name string) *Theme {
 
 // GetAvailableThemes returns list of available theme names
 func GetAvailableThemes() []string {
-	return []string{"dark", "light", "dracula", "nord", "gruvbox"}
+	return []string{"dark", "dracula", "nord", "gruvbox"}
 }
 
 // SetTheme sets the current theme by name

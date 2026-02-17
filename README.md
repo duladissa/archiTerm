@@ -2,9 +2,12 @@
 
 A lightweight, cross-platform TUI (Terminal User Interface) application for architects and developers to quickly access and execute common commands with smart autocomplete.
 
-![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey)
+[![CI](https://github.com/duladissa/architerm/actions/workflows/ci.yml/badge.svg)](https://github.com/duladissa/architerm/actions/workflows/ci.yml)
+[![Release](https://github.com/duladissa/architerm/actions/workflows/release.yml/badge.svg)](https://github.com/duladissa/architerm/actions/workflows/release.yml)
+[![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/duladissa/architerm?include_prereleases)](https://github.com/duladissa/architerm/releases)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey)](https://github.com/duladissa/architerm/releases)
 
 > 🤖 **Made with the help of AI** — Built collaboratively with [Claude](https://claude.ai) by Anthropic
 
@@ -13,7 +16,7 @@ A lightweight, cross-platform TUI (Terminal User Interface) application for arch
 - **🔮 Smart Autocomplete**: Gmail-style autocomplete with ghost text suggestions
 - **📦 Pre-loaded Commands**: Top 10-15 commands for Docker, Kubernetes, gcloud, Azure, curl, and git
 - **🎨 Beautiful TUI**: Side-by-side panel interface with modern styling
-- **🌈 Multiple Themes**: 5 built-in color themes (dark, light, dracula, nord, gruvbox) with runtime switching
+- **🌈 Multiple Themes**: 4 built-in color themes (dark, dracula, nord, gruvbox) with runtime switching
 - **🎯 Unix/Linux Colors**: Familiar terminal color scheme (green prompt, yellow commands, etc.)
 - **📋 Easy Copy**: One-key copy of command output or command text to clipboard
 - **⚡ Lightweight**: Single binary, no dependencies required at runtime
@@ -204,12 +207,11 @@ The command 'gcloud' is not installed or not in PATH.
 
 ## 🎨 Themes
 
-archiTerm comes with 5 built-in color themes:
+archiTerm comes with 4 built-in color themes:
 
 | Theme | Description |
 |-------|-------------|
 | `dark` | Default dark theme with purple/cyan accents |
-| `light` | Light theme for bright environments |
 | `dracula` | Popular Dracula color scheme |
 | `nord` | Nord-inspired arctic color palette |
 | `gruvbox` | Retro groove color scheme |
@@ -387,6 +389,10 @@ The new category will automatically appear in the "Supported Technologies" panel
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 📋 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
+
 ## 🙏 Acknowledgments
 
 - [Bubble Tea](https://github.com/charmbracelet/bubbletea) - The TUI framework
@@ -396,4 +402,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ for architects and developers who love the terminal.
+<p align="center">
+  Made with ❤️ for architects and developers who love the terminal.
+  <br><br>
+  <a href="https://github.com/duladissa/architerm/stargazers">⭐ Star us on GitHub</a> •
+  <a href="https://github.com/duladissa/architerm/issues">🐛 Report Bug</a> •
+  <a href="https://github.com/duladissa/architerm/issues">✨ Request Feature</a>
+</p>

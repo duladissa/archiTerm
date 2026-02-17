@@ -53,7 +53,7 @@ func (l *Layout) GetRightPanelWidth() int {
 
 // GetInputHeight returns the height for the input panel
 func (l *Layout) GetInputHeight() int {
-	return 4
+	return 4 // 2 content + 2 border
 }
 
 // GetSuggestionsHeight returns the height for the suggestions panel
@@ -68,13 +68,14 @@ func (l *Layout) GetSuggestionsHeight() int {
 
 // GetCategoriesHeight returns the height for the categories panel
 func (l *Layout) GetCategoriesHeight() int {
-	return 4
+	return 15
 }
 
 // GetOutputHeight returns the height for the output panel
 func (l *Layout) GetOutputHeight() int {
-	// Output panel fills the right side
-	return l.Height - 4 // header + status + gaps
+	// Output panel should match the combined height of left panels exactly
+	// We subtract 2 because lipgloss adds borders differently when panels are stacked
+	return l.GetInputHeight() + l.GetSuggestionsHeight() + l.GetCategoriesHeight() - 2
 }
 
 // GetContentWidth returns the width for content panels (legacy, use specific widths)

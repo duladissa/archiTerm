@@ -73,13 +73,14 @@ func DefaultStyles() *Styles {
 	t := theme.CurrentTheme
 	s := &Styles{}
 
-	// Base border style
+	// Base border style with background
 	baseBorder := lipgloss.NewStyle().
 		BorderStyle(lipgloss.RoundedBorder()).
-		BorderForeground(t.GetBorder())
+		BorderForeground(t.GetBorder()).
+		Background(t.GetBackground())
 
-	// App container
-	s.App = lipgloss.NewStyle().Padding(0)
+	// App container with background
+	s.App = lipgloss.NewStyle().Padding(0).Background(t.GetBackground())
 
 	// Header
 	s.Header = lipgloss.NewStyle().
@@ -94,38 +95,38 @@ func DefaultStyles() *Styles {
 
 	// Input panel
 	s.InputPanel = baseBorder.Copy().BorderForeground(t.GetPrimary()).Padding(0, 1)
-	s.InputPanelTitle = lipgloss.NewStyle().Foreground(t.GetPrimary()).Bold(true)
-	s.InputPrompt = lipgloss.NewStyle().Foreground(t.GetAccent()).Bold(true)
-	s.InputText = lipgloss.NewStyle().Foreground(t.GetForeground())
-	s.InputGhost = lipgloss.NewStyle().Foreground(t.GetMuted()).Italic(true)
+	s.InputPanelTitle = lipgloss.NewStyle().Foreground(t.GetPrimary()).Background(t.GetBackground()).Bold(true)
+	s.InputPrompt = lipgloss.NewStyle().Foreground(t.GetAccent()).Background(t.GetBackground()).Bold(true)
+	s.InputText = lipgloss.NewStyle().Foreground(t.GetForeground()).Background(t.GetBackground())
+	s.InputGhost = lipgloss.NewStyle().Foreground(t.GetMuted()).Background(t.GetBackground()).Italic(true)
 	s.InputCursor = lipgloss.NewStyle().Foreground(t.GetForeground()).Background(t.GetSuggestionMatch())
 
 	// Suggestions panel
 	s.SuggestionsPanel = baseBorder.Copy().BorderForeground(t.GetSecondary()).Padding(0, 1)
-	s.SuggestionsPanelTitle = lipgloss.NewStyle().Foreground(t.GetSecondary()).Bold(true)
-	s.SuggestionItem = lipgloss.NewStyle().Foreground(t.GetForeground()).Padding(0, 1)
-	s.SuggestionSelected = lipgloss.NewStyle().Foreground(t.GetForeground()).Background(t.GetSuggestionMatch()).Bold(true).Padding(0, 1)
-	s.SuggestionCommand = lipgloss.NewStyle().Foreground(t.GetForeground())
-	s.SuggestionDesc = lipgloss.NewStyle().Foreground(t.GetMuted()).Italic(true)
-	s.SuggestionCategory = lipgloss.NewStyle().Foreground(t.GetSecondary()).Bold(true)
+	s.SuggestionsPanelTitle = lipgloss.NewStyle().Foreground(t.GetSecondary()).Background(t.GetBackground()).Bold(true)
+	s.SuggestionItem = lipgloss.NewStyle().Foreground(t.GetForeground()).Background(t.GetBackground()).Padding(0, 1)
+	s.SuggestionSelected = lipgloss.NewStyle().Foreground(t.GetSelectionFg()).Background(t.GetSelectionBg()).Bold(true).Padding(0, 1)
+	s.SuggestionCommand = lipgloss.NewStyle().Foreground(t.GetForeground()).Background(t.GetBackground())
+	s.SuggestionDesc = lipgloss.NewStyle().Foreground(t.GetMuted()).Background(t.GetBackground()).Italic(true)
+	s.SuggestionCategory = lipgloss.NewStyle().Foreground(t.GetSecondary()).Background(t.GetBackground()).Bold(true)
 
 	// Output panel
 	s.OutputPanel = baseBorder.Copy().BorderForeground(t.GetAccent()).Padding(0, 1)
-	s.OutputPanelTitle = lipgloss.NewStyle().Foreground(t.GetAccent()).Bold(true)
-	s.OutputText = lipgloss.NewStyle().Foreground(t.GetOutput())
-	s.OutputError = lipgloss.NewStyle().Foreground(t.GetError())
-	s.OutputSuccess = lipgloss.NewStyle().Foreground(t.GetAccent())
-	s.OutputPrompt = lipgloss.NewStyle().Foreground(t.GetPrompt()).Bold(true)
-	s.OutputCommand = lipgloss.NewStyle().Foreground(t.GetCommand()).Bold(true)
-	s.OutputSeparator = lipgloss.NewStyle().Foreground(t.GetSeparator())
-	s.OutputDuration = lipgloss.NewStyle().Foreground(t.GetSecondary())
-	s.OutputExitOK = lipgloss.NewStyle().Foreground(t.GetSuccess()).Bold(true)
-	s.OutputExitFail = lipgloss.NewStyle().Foreground(t.GetError()).Bold(true)
+	s.OutputPanelTitle = lipgloss.NewStyle().Foreground(t.GetAccent()).Background(t.GetBackground()).Bold(true)
+	s.OutputText = lipgloss.NewStyle().Foreground(t.GetOutput()).Background(t.GetBackground())
+	s.OutputError = lipgloss.NewStyle().Foreground(t.GetError()).Background(t.GetBackground())
+	s.OutputSuccess = lipgloss.NewStyle().Foreground(t.GetAccent()).Background(t.GetBackground())
+	s.OutputPrompt = lipgloss.NewStyle().Foreground(t.GetPrompt()).Background(t.GetBackground()).Bold(true)
+	s.OutputCommand = lipgloss.NewStyle().Foreground(t.GetCommand()).Background(t.GetBackground()).Bold(true)
+	s.OutputSeparator = lipgloss.NewStyle().Foreground(t.GetSeparator()).Background(t.GetBackground())
+	s.OutputDuration = lipgloss.NewStyle().Foreground(t.GetSecondary()).Background(t.GetBackground())
+	s.OutputExitOK = lipgloss.NewStyle().Foreground(t.GetSuccess()).Background(t.GetBackground()).Bold(true)
+	s.OutputExitFail = lipgloss.NewStyle().Foreground(t.GetError()).Background(t.GetBackground()).Bold(true)
 
 	// Status bar
-	s.StatusBar = lipgloss.NewStyle().Foreground(t.GetMuted()).Padding(0, 1)
-	s.StatusText = lipgloss.NewStyle().Foreground(t.GetMuted())
-	s.StatusKeyHint = lipgloss.NewStyle().Foreground(t.GetSecondary()).Bold(true)
+	s.StatusBar = lipgloss.NewStyle().Foreground(t.GetMuted()).Background(t.GetBackground()).Padding(0, 1)
+	s.StatusText = lipgloss.NewStyle().Foreground(t.GetMuted()).Background(t.GetBackground())
+	s.StatusKeyHint = lipgloss.NewStyle().Foreground(t.GetSecondary()).Background(t.GetBackground()).Bold(true)
 
 	return s
 }
