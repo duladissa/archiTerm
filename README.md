@@ -26,46 +26,8 @@ A lightweight, cross-platform TUI (Terminal User Interface) application for arch
 - **🖱️ Mouse Support**: Scroll output with mouse wheel
 - **🛠 Technology Overview**: Visual display of all supported technologies
 
-## 📸 Screenshot
 
-```
-┌───────────────────────────────────────────────────────────────────────────────────┐
-│  🏛️  archiTerm                     Tab: complete │ ↑↓: navigate │ Ctrl+C: exit  │
-├───────────────────────────────────────┬───────────────────────────────────────────┤
-│ ╭───────────────────────────────────╮ │ ╭───────────────────────────────────────╮ │
-│ │ ⌨ Command                         │ │ │ 📺 Output │ Ctrl+Y: copy │ Ctrl+B: cmd│ │
-│ │ > kubectl get pods -n default     │ │ │                                       │ │
-│ ╰───────────────────────────────────╯ │ │ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │ │
-│ ╭───────────────────────────────────╮ │ │ $ kubectl get pods -n default         │ │
-│ │ 📋 Suggestions (15)               │ │ │ ────────────────────────────────────  │ │
-│ │ ▶ kubectl get pods -n NAMESPACE   │ │ │ NAME                 READY   STATUS   │ │
-│ │   kubectl get pods --all-namespa..│ │ │ nginx-deployment     1/1     Running  │ │
-│ │   kubectl get services            │ │ │ redis-cache          1/1     Running  │ │
-│ │   kubectl get deployments         │ │ │ ✓ [Exit code: 0] [Duration: 245ms]   │ │
-│ ╰───────────────────────────────────╯ │ │                                       │ │
-│ ╭───────────────────────────────────╮ │ │ [↑/↓ scroll] [Ctrl+Y copy output]    │ │
-│ │ 🛠 Supported Technologies         │ │ │                                       │ │
-│ │ ⚡ azure  🌐 curl  🐳 docker       │ │ │                                       │ │
-│ │ ☁️ gcloud  📦 git  ☸️ kubernetes   │ │ │                                       │ │
-│ ╰───────────────────────────────────╯ │ ╰───────────────────────────────────────╯ │
-├───────────────────────────────────────────────────────────────────────────────────┤
-│ Tab complete │ Enter run │ Ctrl+Y copy out │ Ctrl+B copy cmd │ Ctrl+L clear      │
-└───────────────────────────────────────────────────────────────────────────────────┘
-```
-
-### Output Color Scheme (Unix/Linux Style)
-
-| Element | Color | Description |
-|---------|-------|-------------|
-| `$` prompt | 🟢 Green | Familiar bash-style prompt |
-| Command text | 🟡 Yellow | The executed command |
-| Separators | 🟣 Purple | Visual distinction between outputs |
-| Output text | ⚪ Light Gray | Command output |
-| Duration | 🔵 Blue | Timing information |
-| Success ✓ | 🟢 Green | Exit code 0 |
-| Failure ✗ | 🔴 Red | Non-zero exit code |
-| Errors | 🔴 Red | Error messages |
-| Warnings | 🟠 Amber | Warning messages |
+![How it works](assets/img/screenshot_archiTerm.gif)
 
 ## 🚀 Installation
 
@@ -155,48 +117,6 @@ You can select and copy text from the output panel using your mouse:
 5. A "✅ Selection copied!" message confirms the copy
 
 This works just like selecting text in a normal terminal!
-
-### Smart "Command Not Found" Handling
-
-When you run a command that's not installed, archiTerm will:
-1. ⚠️ Detect the missing command
-2. 📦 Show installation instructions with a URL
-3. 🔗 Display the install link you can copy
-
-**Example output when `gcloud` is not installed:**
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-$ gcloud compute instances list
-────────────────────────────────────────
-
-⚠️  COMMAND NOT FOUND
-────────────────────────────────────────
-The command 'gcloud' is not installed or not in PATH.
-
-📦 HOW TO INSTALL:
-   Install Google Cloud SDK
-   🔗 https://cloud.google.com/sdk/docs/install
-
-🔍 TROUBLESHOOTING:
-   • Verify installation: which <command>
-   • Check PATH: echo $PATH
-   • Reload shell: source ~/.bashrc (or ~/.zshrc)
-
-✗ [Exit code: 127] [Duration: 5ms]
-```
-
-**Supported commands with install hints:**
-| Command | Install URL |
-|---------|-------------|
-| `docker` | https://docs.docker.com/get-docker/ |
-| `docker-compose` | https://docs.docker.com/compose/install/ |
-| `kubectl` | https://kubernetes.io/docs/tasks/tools/ |
-| `gcloud` | https://cloud.google.com/sdk/docs/install |
-| `az` | https://docs.microsoft.com/cli/azure/install-azure-cli |
-| `aws` | https://aws.amazon.com/cli/ |
-| `terraform` | https://www.terraform.io/downloads |
-| `helm` | https://helm.sh/docs/intro/install/ |
-| `git` | https://git-scm.com/downloads |
 
 ### Mouse Support
 
